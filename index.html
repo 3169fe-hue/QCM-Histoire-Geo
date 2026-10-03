@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#008751">
+<title>QCM Histoire-Géo — Bénin</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0f2f5;color:#1a1a1a;min-height:100vh;font-size:16px;line-height:1.5}
+.app{max-width:640px;margin:0 auto;padding:0 0 80px 0}
+header{background:linear-gradient(135deg,#008751 0%,#006b40 100%);color:#fff;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.15);position:sticky;top:0;z-index:10}
+header.with-back{display:flex;align-items:center;gap:12px}
+.back-btn{background:rgba(255,255,255,.2);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+header h1{font-size:19px;font-weight:700;margin-bottom:2px}
+header p{font-size:12px;opacity:.9}
+.intro{background:#fff;margin:14px;padding:16px;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);font-size:14px;color:#444}
+.intro strong{color:#008751}
+.section-title{margin:20px 14px 10px 14px;font-size:13px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.8px}
+.cycle-card{margin:0 14px 14px 14px;padding:22px 20px;border-radius:16px;cursor:pointer;color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.12);display:flex;align-items:center;gap:16px}
+.cycle-card:active{transform:scale(.98)}
+.cycle-college{background:linear-gradient(135deg,#008751 0%,#00a86b 100%)}
+.cycle-lycee{background:linear-gradient(135deg,#a37a00 0%,#d4a017 100%)}
+.cycle-icon{font-size:40px;flex-shrink:0}
+.cycle-body{flex:1}
+.cycle-title{font-size:19px;font-weight:700;margin-bottom:4px}
+.cycle-sub{font-size:13px;opacity:.92}
+.cycle-arrow{font-size:24px;opacity:.7;flex-shrink:0}
+.card{background:#fff;margin:0 14px 10px 14px;padding:16px;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:pointer;border-left:5px solid #008751;display:flex;align-items:center;gap:14px}
+.card:active{transform:scale(.98)}
+.card.lycee{border-left-color:#FCD116}
+.card.bientot{opacity:.65;border-left-color:#ccc;cursor:default}
+.card .badge{width:48px;height:48px;flex-shrink:0;background:#e8f5ee;color:#008751;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px}
+.card.lycee .badge{background:#fff8e1;color:#a37a00}
+.card.bientot .badge{background:#f0f0f0;color:#999}
+.card-body{flex:1;min-width:0}
+.card-title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:3px}
+.card-meta{font-size:12px;color:#888}
+.card-score{font-size:12px;color:#008751;font-weight:600;margin-top:3px}
+.card.bientot .card-meta{color:#bbb;font-style:italic}
+.quiz-header{display:flex;justify-content:space-between;align-items:center;margin:14px 14px 0 14px;font-size:13px;color:#666;font-weight:600}
+.progress{height:6px;background:#e0e0e0;border-radius:3px;margin:8px 14px 16px 14px;overflow:hidden}
+.progress-fill{height:100%;background:#008751;border-radius:3px;transition:width .3s ease}
+.question{background:#fff;margin:0 14px 14px 14px;padding:18px;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.06);font-size:16px;font-weight:600;line-height:1.45}
+.theme-tag{display:inline-block;background:#e8f5ee;color:#006b40;font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.option{background:#fff;margin:0 14px 8px 14px;padding:14px 16px;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);cursor:pointer;font-size:15px;display:flex;align-items:center;gap:12px;border:2px solid transparent}
+.option:active{transform:scale(.99)}
+.option .letter{width:28px;height:28px;flex-shrink:0;border-radius:50%;background:#f0f2f5;color:#444;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.option.correct{background:#e8f5ee;border-color:#008751}
+.option.correct .letter{background:#008751;color:#fff}
+.option.wrong{background:#fdecef;border-color:#E8112D}
+.option.wrong .letter{background:#E8112D;color:#fff}
+.option.disabled{cursor:default}
+.option.selected{background:#e8f5ee;border-color:#008751;box-shadow:0 0 0 3px rgba(0,135,81,.15)}
+.option.selected .letter{background:#008751;color:#fff}
+.explanation{background:#fff8e1;margin:14px;padding:14px 16px;border-radius:10px;border-left:4px solid #FCD116;font-size:14px;color:#444;line-height:1.5}
+.explanation strong{color:#1a1a1a;display:block;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+.btn{display:block;margin:14px;padding:15px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;width:calc(100% - 28px)}
+.btn-primary{background:#008751;color:#fff}
+.btn-secondary{background:#e0e0e0;color:#333}
+.result-card{background:#fff;margin:20px 14px;padding:28px 20px;border-radius:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.result-score{font-size:56px;font-weight:800;color:#008751;line-height:1}
+.result-score.fail{color:#E8112D}
+.result-score.mid{color:#FCD116}
+.result-label{font-size:13px;color:#888;margin-top:8px;text-transform:uppercase;letter-spacing:1px}
+.result-detail{font-size:15px;color:#444;margin-top:16px}
+.result-message{margin-top:16px;font-size:14px;color:#666;line-height:1.5;padding-top:16px;border-top:1px solid #eee}
+.review-item{background:#fff;margin:0 14px 10px 14px;padding:14px;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);font-size:14px;border-left:4px solid #E8112D}
+.review-q{font-weight:600;margin-bottom:6px;color:#1a1a1a;line-height:1.4}
+.review-a{color:#008751;font-size:13px;margin-top:4px}
+.empty-state{background:#fff;margin:20px 14px;padding:32px 20px;border-radius:16px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.empty-state .big-icon{font-size:48px;margin-bottom:12px}
+.empty-state h2{font-size:17px;color:#333;margin-bottom:8px}
+.empty-state p{font-size:14px;color:#777;line-height:1.5}
+footer{text-align:center;font-size:11px;color:#999;padding:20px;line-height:1.6}
+.search-box{margin:14px 14px 10px 14px;padding:12px 16px;border-radius:10px;border:2px solid #e0e0e0;font-size:15px;width:calc(100% - 28px);background:#fff}
+.search-box:focus{outline:none;border-color:#008751}
+.term-item{background:#fff;margin:0 14px 8px 14px;padding:14px 16px;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.06);border-left:4px solid #008751}
+.term-name{font-weight:700;color:#006b40;font-size:15px;margin-bottom:4px}
+.term-def{font-size:14px;color:#444;line-height:1.5}
+.term-count{text-align:center;font-size:12px;color:#888;margin:8px 14px 14px 14px}
+.glossary-btn{background:#fff8e1;border:2px dashed #FCD116;margin:0 14px 10px 14px;padding:14px;border-radius:12px;cursor:pointer;text-align:center;color:#a37a00;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
+.glossary-btn:active{transform:scale(.98)}
+.exam-btn{background:#fdecef;border:2px dashed #E8112D;margin:0 14px 10px 14px;padding:14px;border-radius:12px;cursor:pointer;text-align:center;color:#E8112D;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
+.exam-btn:active{transform:scale(.98)}
+.fiches-btn{background:#e8f5ee;border:2px dashed #008751;margin:0 14px 10px 14px;padding:14px;border-radius:12px;cursor:pointer;text-align:center;color:#006b40;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
+.fiches-btn:active{transform:scale(.98)}
+.timer{background:#E8112D;color:#fff;padding:6px 14px;border-radius:20px;font-weight:700;font-size:14px}
+.author-card{background:linear-gradient(135deg,#008751 0%,#00a86b 100%);margin:14px;padding:20px;border-radius:14px;color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.author-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:.85;margin-bottom:12px}
+.author-name{font-size:18px;font-weight:700;margin-bottom:6px}
+.author-role{font-size:13px;opacity:.9;margin-bottom:14px}
+.author-line{display:flex;align-items:center;gap:10px;font-size:14px;padding:8px 0;border-top:1px solid rgba(255,255,255,.2);text-decoration:none;color:#fff}
+.author-line:first-of-type{border-top:none}
+.author-icon{font-size:16px;flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+<script>
+const CYCLES={college:{titre:"1er Cycle",sousTitre:"Collège — de la 6e à la 3e",classes:["6e","5e","4e","3e"]},lycee:{titre:"2nd Cycle",sousTitre:"Lycée — de la 2nde à la Terminale",classes:["2nde","1ere","tle"]}};
+const CLASSES={"6e":{cycle:"college",label:"6e",titre:"Classe de 6e",dispo:true},"5e":{cycle:"college",label:"5e",titre:"Classe de 5e",dispo:true},"4e":{cycle:"college",label:"4e",titre:"Classe de 4e",dispo:true},"3e":{cycle:"college",label:"3e",titre:"Classe de 3e",dispo:true},"2nde":{cycle:"lycee",label:"2nde",titre:"Classe de 2nde (A, B, C, D)",dispo:true},"1ere":{cycle:"lycee",label:"1ère",titre:"Classe de 1ère (A, B, C, D)",dispo:true},"tle":{cycle:"lycee",label:"Tle",titre:"Classe de Terminale (A, B, C, D)",dispo:true}};
+const SA_TITLES={
+"6e":{1:{title:"La vie de l'homme préhistorique",disc:"Histoire"},2:{title:"La notion de milieu et le milieu local",disc:"Géographie"},3:{title:"Les religions et la culture de la paix",disc:"Histoire"},4:{title:"L'importance économique du milieu intertropical en Afrique",disc:"Géographie"}},
+"5e":{1:{title:"Comment était organisée l'Égypte ancienne ?",disc:"Histoire"},2:{title:"Les origines lointaines des peuples du Bénin",disc:"Histoire"},3:{title:"Le dynamisme économique des milieux tempérés",disc:"Géographie"},4:{title:"Les empires africains du Xe au XVIe siècle (Ghana)",disc:"Histoire"}},
+"4e":{1:{title:"Les royaumes côtiers du Bénin et la traite transatlantique",disc:"Histoire"},2:{title:"Les atouts des milieux naturels pour le développement du Bénin",disc:"Géographie"},3:{title:"Les droits de l'Homme et la culture de la paix sociale",disc:"Histoire"},4:{title:"Les problèmes liés à l'évolution démographique au Bénin",disc:"Géographie"}},
+"3e":{1:{title:"Le mouvement ouvrier en Europe (XIXe-XXe siècles)",disc:"Histoire"},2:{title:"L'importance des ressources disponibles pour le développement du Bénin",disc:"Géographie"},3:{title:"Les causes et manifestations de l'impérialisme européen en Afrique",disc:"Histoire"},4:{title:"La CEDEAO, exemple d'intégration économique",disc:"Géographie"},5:{title:"Les résistances africaines face à l'impérialisme européen",disc:"Histoire"}},
+"2nde":{1:{title:"Les méthodes et moyens de recherche en Histoire africaine",disc:"Histoire"},2:{title:"Les méthodes et moyens d'étude en Géographie",disc:"Géographie"},3:{title:"La civilisation égyptienne et ses rapports avec l'Afrique",disc:"Histoire"},4:{title:"L'homme face à ses besoins en eau",disc:"Géographie"}},
+"1ere":{1:{title:"Le monde de 1919 à 1939",disc:"Histoire"},2:{title:"L'enjeu des communications dans l'espace CEDEAO",disc:"Géographie"},3:{title:"Les relations internationales de 1939 à nos jours",disc:"Histoire"},4:{title:"La pauvreté dans le monde",disc:"Géographie"}},
+"tle":{1:{title:"Organisation économique d'un pays à économie dominée : le Bénin",disc:"Géographie"},2:{title:"L'ONU et la gestion du monde",disc:"Histoire"},3:{title:"Pays à économie dominante : USA et Japon",disc:"Géographie"},4:{title:"Les luttes pour l'indépendance en Afrique et au Bénin",disc:"Histoire"},5:{title:"Pays émergents : Chine et Brésil",disc:"Géographie"},6:{title:"Regroupements économiques : CEDEAO, UE, ALENA",disc:"Géographie"}}
+};
+const GLOSSARY={
+"6e":[
+{t:"Préhistoire",d:"Longue période des origines de l'Homme jusqu'à l'invention de l'écriture."},
+{t:"Paléolithique",d:"Âge de la pierre taillée. Hommes nomades, chasseurs et cueilleurs."},
+{t:"Néolithique",d:"Âge de la pierre polie. Agriculture, élevage, sédentarisation."},
+{t:"Homo Habilis",d:"« Homme habile », il y a 3 millions d'années. Maîtrisait le langage."},
+{t:"Homo Erectus",d:"« Homme redressé », il y a 2 millions d'années. Maîtrisait le feu."},
+{t:"Homo Sapiens",d:"« Homme intelligent », souche de l'humanité moderne."},
+{t:"Biface",d:"Outil préhistorique en pierre taillée sur les deux faces."},
+{t:"Nomadisme",d:"Mode de vie des populations qui se déplacent sans cesse."},
+{t:"Sédentarisation",d:"Fait de s'installer durablement dans un lieu."},
+{t:"Milieu",d:"Espace naturel ou aménagé par l'Homme."},
+{t:"Zones thermiques",d:"Polaire, chaude, tempérée."},
+{t:"Équateur",d:"Parallèle de 40 000 km, à mi-chemin des pôles."},
+{t:"Méridien",d:"Demi-cercle joignant les pôles. Principal : Greenwich."},
+{t:"Latitude",d:"Distance en degrés d'un lieu à l'équateur."},
+{t:"Longitude",d:"Distance en degrés d'un lieu au méridien de Greenwich."},
+{t:"Fuseau horaire",d:"Zone où l'heure est identique. 24 fuseaux de 15°."},
+{t:"Religion",d:"Reconnaissance par l'Homme d'un être suprême dont dépend sa destinée."},
+{t:"Milieu intertropical",d:"Zone chaude entre les tropiques (équatorial, tropical, désertique)."}
+],
+"5e":[
+{t:"Civilisation",d:"Ensemble des caractères communs à un groupe humain."},
+{t:"Hiéroglyphes",d:"Écriture sacrée de l'Égypte antique."},
+{t:"Papyrus",d:"Support d'écriture fabriqué à partir d'une plante."},
+{t:"Pharaon",d:"Roi de l'Égypte antique, considéré comme un dieu."},
+{t:"Vizir",d:"Chef du gouvernement en Égypte antique."},
+{t:"Scribe",d:"Égyptien lettré qui maîtrisait les hiéroglyphes."},
+{t:"Momification",d:"Technique égyptienne de conservation des corps."},
+{t:"Pyramide",d:"Tombeau monumental égyptien à base carrée."},
+{t:"Paléolithique béninois",d:"Période de -500 000 à -8000 au Bénin."},
+{t:"Néolithique béninois",d:"Période de -8000 à -3000 au Bénin."},
+{t:"Protohistoire",d:"Période entre préhistoire et histoire (-2000 à +500 au Bénin)."},
+{t:"Aire culturelle",d:"Grand ensemble partageant une culture. Bénin : Adja-Fon, Yoruba-Nago, Baatombu."},
+{t:"Wassangari",d:"Classe princière du royaume de Nikki (XVe siècle)."},
+{t:"Domaine océanique",d:"Climat tempéré des façades maritimes."},
+{t:"Domaine méditerranéen",d:"Été chaud et sec, hiver doux et pluvieux."},
+{t:"Domaine continental",d:"Climat de l'intérieur des continents."},
+{t:"Écotourisme",d:"Tourisme respectueux de l'environnement."},
+{t:"Âge d'or de l'Afrique",d:"Période des Xe-XVIe siècles (grands empires)."},
+{t:"Almoravides",d:"Peuple berbère qui mit fin au Ghana en 1076-1077."},
+{t:"Commerce caravanier",d:"Commerce transsaharien (or, sel, tissus, esclaves)."}
+],
+"4e":[
+{t:"Traite transatlantique",d:"Trafic d'esclaves africains vers les Amériques (XVIe-XIXe)."},
+{t:"Courtier",d:"Intermédiaire africain dans la traite."},
+{t:"Compagnie à charte",d:"Compagnie maritime autorisée à organiser la traite."},
+{t:"Royaume côtier",d:"Royaume d'Afrique de l'Ouest en contact avec les Européens."},
+{t:"Droit de l'Homme",d:"Prérogative inhérente à la personne humaine, universelle."},
+{t:"DUDH",d:"Déclaration Universelle des Droits de l'Homme (10 déc. 1948)."},
+{t:"Génocide",d:"Extermination systématique d'un groupe humain."},
+{t:"Shoah",d:"Extermination des Juifs par les nazis."},
+{t:"Culture de la paix",d:"Tolérance, pardon, réconciliation."},
+{t:"Milieu béninien",d:"Sud du Bénin, de la côte à Savè."},
+{t:"Milieu sud-soudanien",d:"Bénin central (Savè à Bembèrèkè)."},
+{t:"Milieu nord-soudanien",d:"Nord du Bénin (Bembèrèkè au Niger)."},
+{t:"Milieu atacorien",d:"Nord-Ouest du Bénin (mont Sagbarao : 658 m)."},
+{t:"Natalité",d:"Nombre de naissances en une période."},
+{t:"Mortalité",d:"Nombre de décès en une période."},
+{t:"Accroissement naturel",d:"Différence entre naissances et décès."},
+{t:"Solde migratoire",d:"Différence entre immigrés et émigrés."},
+{t:"Exode rural",d:"Déplacement des campagnes vers les villes."}
+]
+,"3e":[
+{t:"Mouvement ouvrier",d:"Luttes des travailleurs pour améliorer leurs conditions de vie et de travail."},
+{t:"Bourgeoisie",d:"Classe sociale qui possède les moyens de production."},
+{t:"Prolétariat",d:"Classe des ouvriers qui ne possèdent que leur force de travail."},
+{t:"Syndicat",d:"Association de travailleurs défendant leurs intérêts."},
+{t:"Grève",d:"Arrêt collectif et volontaire du travail."},
+{t:"Livret ouvrier",d:"Carnet obligatoire où le patron inscrivait ses remarques."},
+{t:"Truck system",d:"Paiement d'une partie du salaire en nature."},
+{t:"Réformisme",d:"Transformation de la société par des voies légales."},
+{t:"Impérialisme",d:"Politique de domination d'un État sur d'autres peuples."},
+{t:"Colonialisme",d:"Doctrine et pratique de domination d'un territoire par un État."},
+{t:"Conférence de Berlin",d:"Conférence (1884-1885) qui organisa le partage de l'Afrique."},
+{t:"Indirect Rule",d:"Système colonial britannique gouvernant via les chefs locaux."},
+{t:"Assimilation",d:"Système colonial français intégrant les colonisés à la culture française."},
+{t:"Balkanisation",d:"Morcellement de l'Afrique en de nombreux petits États."},
+{t:"CEDEAO",d:"Communauté économique des États de l'Afrique de l'Ouest (1975)."},
+{t:"Intégration économique",d:"Mise en commun de potentialités entre États."},
+{t:"Résistance",d:"Opposition, souvent armée, à la conquête coloniale."},
+{t:"Terre brûlée",d:"Tactique consistant à détruire les ressources pour ne pas les laisser à l'ennemi."},
+{t:"Panafricanisme",d:"Mouvement prônant l'unité et la solidarité africaines."}
+],
+"2nde":[
+{t:"Heuristique",d:"Première tâche de l'historien : recherche et collecte des documents."},
+{t:"Critique externe",d:"Critique portant sur l'écriture, la langue, les formes, la source."},
+{t:"Critique interne",d:"Critique portant sur l'interprétation et la crédibilité."},
+{t:"Tradition orale",d:"Récits, chants, poèmes transmis oralement."},
+{t:"Traditionaliste",d:"Dépositaire de la tradition orale (griot, Kpanligan, Diéli)."},
+{t:"Sources muettes",d:"Traces matérielles étudiées par l'archéologie."},
+{t:"Africanistes",d:"Chercheurs européens qui ont étudié l'Afrique (Frobenius, Delafosse, Vansina)."},
+{t:"Historiographie",d:"Science de l'écriture de l'Histoire et étude des historiens."},
+{t:"Matrice africaine",d:"Concept de Ki-Zerbo : repenser l'histoire selon les normes africaines."},
+{t:"Méthode inductive",d:"Démarche qui part du particulier pour aller au général."},
+{t:"Méthode déductive",d:"Démarche qui part du général pour aller au particulier."},
+{t:"Méthode hypothétique-déductive",d:"Démarche qui formule des hypothèses à vérifier."},
+{t:"Dossier documentaire",d:"Ensemble organisé de documents autour d'une problématique."},
+{t:"Systémique",d:"Approche qui étudie les phénomènes comme des systèmes d'éléments en interaction."},
+{t:"Civilisation égyptienne",d:"Civilisation née dans la vallée du Nil (4e millénaire av. J.-C.)."},
+{t:"Nil",d:"Fleuve d'Égypte, source de vie. Hérodote : « L'Égypte est un don du Nil »."},
+{t:"Akhénaton",d:"Pharaon (Aménophis IV) qui imposa le culte d'Aton (monothéisme)."},
+{t:"Nubie",d:"Région au sud de l'Égypte, riche en or, dominée par Kouch."},
+{t:"Axoum",d:"Royaume éthiopien commerçant avec l'Égypte."},
+{t:"Maladie hydrique",d:"Maladie transmise par l'eau contaminée (choléra, diarrhée)."}
+],
+"1ere":[
+{t:"Entre-deux-guerres",d:"Période de 1919 à 1939."},
+{t:"Prosperity",d:"Prospérité économique américaine des années 20, fragile."},
+{t:"Grande Dépression",d:"Crise économique mondiale qui suit le krach de 1929."},
+{t:"Krach boursier",d:"Effondrement brutal des cours de la Bourse (octobre 1929)."},
+{t:"Totalitarisme",d:"Régime politique à parti unique, fondé sur la propagande et la terreur."},
+{t:"Fascisme",d:"Régime totalitaire italien (Mussolini, 1922)."},
+{t:"Nazisme",d:"Régime totalitaire allemand (Hitler, 1933)."},
+{t:"Blitzkrieg",d:"Guerre-éclair : blindés, aviation, infanterie."},
+{t:"Guerre froide",d:"Conflit sans affrontement direct entre USA et URSS (1947-1991)."},
+{t:"Coexistence pacifique",d:"Politique de détente prônée par Khrouchtchev (1953)."},
+{t:"Détente",d:"Apaisement des tensions Est-Ouest (1960-1970)."},
+{t:"Plan Marshall",d:"Aide économique américaine à l'Europe (1947)."},
+{t:"OTAN",d:"Alliance militaire occidentale (1949)."},
+{t:"Pacte de Varsovie",d:"Alliance militaire du bloc soviétique (1955)."},
+{t:"Fracture numérique",d:"Écart technologique entre pays développés et en développement."},
+{t:"Pauvreté monétaire",d:"Forme de pauvreté mesurée par le revenu par tête."},
+{t:"Pauvreté d'existence",d:"Forme de pauvreté fondée sur les conditions de vie et le patrimoine."},
+{t:"IDH",d:"Indice de Développement Humain (santé, éducation, revenu)."},
+{t:"OMD",d:"Objectifs du Millénaire pour le Développement (2000-2015)."},
+{t:"Dialogue Sud-Sud",d:"Coopération entre pays en développement."}
+],
+"tle":[
+{t:"Économie dominée",d:"Économie dépendante de l'extérieur pour ses capitaux, sa technologie, ses débouchés."},
+{t:"Économie dominante",d:"Économie puissante qui influence l'économie mondiale."},
+{t:"Pays émergent",d:"Pays en développement à croissance rapide."},
+{t:"BRICS",d:"Brésil, Russie, Inde, Chine, South Africa."},
+{t:"Mondialisation",d:"Interdépendance économique croissante des pays du monde (FMI)."},
+{t:"Triade",d:"Trois pôles dominants : Amérique du Nord, Europe, Asie-Pacifique."},
+{t:"ONU",d:"Organisation des Nations Unies (1945)."},
+{t:"Assemblée générale",d:"Principal organe de délibération de l'ONU."},
+{t:"Conseil de sécurité",d:"Organe exécutif de l'ONU (5 membres permanents)."},
+{t:"Droit de veto",d:"Droit des 5 grandes puissances de s'opposer à une résolution."},
+{t:"Casques bleus",d:"Forces militaires de l'ONU pour le maintien de la paix (Nobel 1988)."},
+{t:"Ingérence humanitaire",d:"Principe (1992) autorisant l'ONU à intervenir dans un pays."},
+{t:"MITI",d:"Ministère japonais du Commerce International et de l'Industrie."},
+{t:"Keiretsu",d:"Grand groupe industriel japonais organisé autour d'une banque."},
+{t:"Décolonisation",d:"Processus d'accession à l'indépendance (1945-1975)."},
+{t:"Panafricanisme",d:"Mouvement prônant l'unité et la solidarité africaines."},
+{t:"Délocalisation",d:"Transfert d'activités industrielles vers un autre pays."},
+{t:"CEDEAO",d:"Communauté économique des États de l'Afrique de l'Ouest (1975)."},
+{t:"Union européenne",d:"Union économique et politique de pays européens (1957)."},
+{t:"ALENA",d:"Accord de libre-échange nord-américain (USA, Canada, Mexique)."},
+{t:"FMI",d:"Fonds monétaire international."},
+{t:"Banque mondiale",d:"Institution financière internationale de développement."},
+{t:"OMD",d:"Objectifs du Millénaire pour le Développement (2000-2015)."},
+{t:"NEPAD",d:"Nouveau Partenariat pour le Développement de l'Afrique (2001)."},
+{t:"Eco",d:"Future monnaie unique de la CEDEAO."}
+]
+};
+const REVISIONS={
+"6e":{
+1:{t:"La vie de l'homme préhistorique",pts:["Afrique = berceau de l'humanité (Birkinesh, 4 M d'années)","Évolution : Habilis → Erectus → Sapiens","Paléolithique (pierre taillée) → Néolithique (pierre polie, agriculture)"]},
+2:{t:"La notion de milieu",pts:["Composantes : physiques (relief, climat), biologiques (végétation, faune), humaines","L'homme est l'élément le plus actif","Repères géo : équateur, méridiens, latitude, longitude"]},
+3:{t:"Les religions et la paix",pts:["Religions au Bénin : Vodoun, Christianisme, Islam","Principes communs : respect, tolérance, amour du prochain","Valeurs de paix : pardon, réconciliation"]},
+4:{t:"Le milieu intertropical",pts:["Zones thermiques : polaire, chaude, tempérée","Domaines : équatorial, tropical, désertique, montagne","Atouts agricoles + menaces humaines"]}
+},
+"5e":{
+1:{t:"L'Égypte ancienne",pts:["Civilisation du Nil (4e millénaire av. J.-C.)","Organisation : pharaon, vizir, scribes, prêtres","Apports : hiéroglyphes, papyrus, pyramides, irrigation"]},
+2:{t:"Origines des peuples du Bénin",pts:["Paléolithique béninois (-500 000 à -8000)","Néolithique (-8000 à -3000), Protohistoire (-2000 à +500)","3 aires culturelles : Adja-Fon, Yoruba-Nago, Baatombu"]},
+3:{t:"Les milieux tempérés",pts:["4 saisons, 3 domaines : océanique, continental, méditerranéen","Facteurs de puissance + contraintes (pollution, chômage)","Solutions : parcs, écotourisme"]},
+4:{t:"Les empires africains",pts:["Ghana, Mali, Songhaï (Xe-XVIe siècles)","Commerce caravanier (or, sel)","Déclin du Ghana : Almoravides (1076-1077), puis Mali"]}
+},
+"4e":{
+1:{t:"Les royaumes côtiers et la traite",pts:["Traite transatlantique (XVIe-XIXe)","Royaumes : Allada, Porto-Novo, Abomey","Conséquences : tensions, divisions encore présentes"]},
+2:{t:"Les milieux naturels du Bénin",pts:["4 milieux : béninien, sud-soudanien, nord-soudanien, atacorien","Atouts agricoles et touristiques","Contraintes : avancée du désert, inondations"]},
+3:{t:"Les droits de l'Homme",pts:["DUDH (1948) : droits universels, inaliénables","Génocides : Shoah, Rwanda (1994)","Culture de la paix : tolérance, pardon, réconciliation"]},
+4:{t:"L'évolution démographique",pts:["Population : 3,3 M (1979) → 9,98 M (2013) → 22 M (2050)","Accroissement naturel : 3% par an","Défis : urbanisation, chômage, pression sur les ressources"]}
+},
+"3e":{
+1:{t:"Le mouvement ouvrier",pts:["Révolution industrielle (XIXe-XXe) → bourgeoisie vs prolétariat","Conditions de travail très dures au XIXe","Acquis : congés payés, augmentation des salaires, syndicats"]},
+2:{t:"Les ressources du Bénin",pts:["Ressources agricoles, minières, énergétiques, humaines","40% du PIB = agriculture","Défis : valorisation, industrialisation"]},
+3:{t:"L'impérialisme européen",pts:["Causes : économiques, politiques, démographiques","Conférence de Berlin (1884-1885)","Formes : Indirect Rule, assimilation, paternalisme"]},
+4:{t:"La CEDEAO",pts:["Créée en 1975 (Traité de Lagos), siège à Abuja","15 pays, 300 millions d'habitants","Objectif : intégration économique, libre circulation, monnaie unique (Eco)"]},
+5:{t:"Les résistances africaines",pts:["Samory Touré (mandingue), Ménélik II (Éthiopie)","Béhanzin (Danxome), Bio Guera (Borgu), Kaba (Atacora)","Causes d'échec : divisions internes, supériorité militaire européenne"]}
+},
+"2nde":{
+1:{t:"Méthodes de recherche en Histoire africaine",pts:["Heuristique = recherche des documents","Critique externe (forme) et interne (contenu)","Sources : écrites, orales, muettes (archéologie)"]},
+2:{t:"Méthodes d'étude en Géographie",pts:["3 méthodes : inductive, déductive, hypothétique-déductive","Collecte : documents, enquêtes, sorties","Traitement : cartographie, statistiques, informatique"]},
+3:{t:"La civilisation égyptienne",pts:["Civilisation du Nil, 4e millénaire av. J.-C.","Rapports avec Nubie, Kouch, Axoum","Africanité défendue par Cheikh Anta Diop"]},
+4:{t:"L'homme et l'eau",pts:["Eau inégalement répartie sur la Terre","Menaces : rareté, pollution, conflits","Solutions : sensibilisation, aménagements, traitement"]}
+},
+"1ere":{
+1:{t:"Le monde de 1919 à 1939",pts:["1919-1929 : prospérité fragile","1929 : krach boursier, Grande Dépression","1933 : Hitler au pouvoir, montée des totalitarismes"]},
+2:{t:"Les communications dans la CEDEAO",pts:["Réseaux : routier, ferroviaire, aérien, maritime, fluvial","Télécoms et Internet en expansion","Insuffisances : vétusté, fracture numérique"]},
+3:{t:"Les relations internationales de 1939 à nos jours",pts:["Seconde Guerre mondiale (1939-1945)","Guerre froide (1947-1991), coexistence pacifique, détente","Fin de l'URSS (1991), monde unipolaire"]},
+4:{t:"La pauvreté dans le monde",pts:["Plus d'1 milliard de personnes à moins de 1 $/jour","Causes : économiques, politiques, socio-culturelles","Lutte : OMD, dialogue Sud-Sud, annulation de la dette"]}
+},
+"tle":{
+1:{t:"Le Bénin, économie dominée",pts:["3 périodes : 1960-1972, 1972-1990, 1990 à nos jours","Agriculture = base (coton = 40% exportations)","Vision Bénin 2025 : pays émergent"]},
+2:{t:"L'ONU et la gestion du monde",pts:["Créée en 1945, siège à New York","2 piliers : Assemblée générale, Conseil de sécurité","Problèmes : domination US, droit de veto, désarmement"]},
+3:{t:"USA et Japon",pts:["USA : 1er PIB mondial (25% du PIB), 1er rang industriel","Japon : 3e PIB, MITI, Keiretsu, robotique","Limites : endettement, vieillissement, dépendance énergétique"]},
+4:{t:"Les luttes pour l'indépendance",pts:["Décolonisation (1945-1975)","2 formes : lutte armée, négociation","Dahomey indépendant le 1er août 1960"]},
+5:{t:"La Chine et le Brésil",pts:["Chine : ouverture économique depuis 1976","Brésil : miracle économique des années 70","Limites : inégalités sociales et régionales"]},
+6:{t:"Les regroupements économiques",pts:["Mondialisation : interdépendance croissante","CEDEAO (1975), UE (1957), ALENA","Défis : intégration réelle, fracture numérique"]}
+}
+};
+const Q=[{c:"6e",s:1,t:"Préhistoire",q:"Quel est le nom du squelette le plus ancien découvert en Afrique ?",o:["Lucy","Birkinesh","Toumaï","Abel"],r:1,e:"Birkinesh, 4 000 000 d'années."},
+{c:"6e",s:1,t:"Préhistoire",q:"Quel continent est le berceau de l'humanité ?",o:["Asie","Europe","Afrique","Amérique"],r:2,e:"L'Afrique."},
+{c:"6e",s:1,t:"Préhistoire",q:"Âge approximatif de Birkinesh ?",o:["1M","2M","3M","4M"],r:3,e:"4 000 000 d'années."},
+{c:"6e",s:1,t:"Préhistoire",q:"Homme apparu il y a 3 millions d'années ?",o:["Homo Habilis","Homo Erectus","Homo Sapiens","Australopithèque"],r:0,e:"Homo Habilis."},
+{c:"6e",s:1,t:"Préhistoire",q:"Découverte attribuée à Homo Erectus ?",o:["Écriture","Maîtrise du feu","Villages","Domestication"],r:1,e:"Maîtrise du feu."},
+{c:"6e",s:1,t:"Préhistoire",q:"Surnom d'Homo Sapiens ?",o:["Debout","Habile","Intelligent","Redressé"],r:2,e:"L'homme intelligent."},
+{c:"6e",s:1,t:"Préhistoire",q:"Outils du Paléolithique ?",o:["Meule et broyeur","Biface, épieu, harpon","Houe et faucille","Métal"],r:1,e:"Bifaces, épieux, harpons."},
+{c:"6e",s:1,t:"Préhistoire",q:"Nouveaux outils du Néolithique ?",o:["Biface","Meule, broyeur, houe","Épée","Charrue"],r:1,e:"Meule, broyeur, houe."},
+{c:"6e",s:1,t:"Préhistoire",q:"Mode de vie au Paléolithique ?",o:["Sédentaires","Nomades","Villes","Agriculteurs"],r:1,e:"Nomades."},
+{c:"6e",s:1,t:"Préhistoire",q:"Innovation du Néolithique ?",o:["Cueillette","Agriculture et élevage","Chasse","Peinture"],r:1,e:"Agriculture et élevage."},
+{c:"6e",s:1,t:"Préhistoire",q:"Qu'est-ce que la préhistoire ?",o:["Après l'écriture","Origines de l'homme à l'écriture","Antiquité","Empires"],r:1,e:"Origines de l'homme à l'écriture."},
+{c:"6e",s:1,t:"Préhistoire",q:"Invention qui marque la fin de la préhistoire ?",o:["Feu","Écriture","Domestication","Villages"],r:1,e:"L'écriture."},
+{c:"6e",s:1,t:"Préhistoire",q:"Différence Paléolithique/Néolithique ?",o:["Paléo plus récent","Paléo = pierre taillée + nomadisme","Paléo = agriculture","Aucune"],r:1,e:"Pierre taillée vs pierre polie."},
+{c:"6e",s:1,t:"Préhistoire",q:"Pourquoi l'Afrique est le berceau de l'humanité ?",o:["Plus peuplée","Vestiges les plus anciens","Plus grand continent","Premiers écrits"],r:1,e:"Vestiges les plus anciens."},
+{c:"6e",s:1,t:"Préhistoire",q:"Sens de « préhistoire » ?",o:["Avant les dinosaures","Avant l'écriture","Premiers royaumes","Avant la Terre"],r:1,e:"Avant l'écriture."},
+{c:"6e",s:2,t:"Milieu",q:"Composantes physiques d'un milieu ?",o:["Végétation et faune","Relief, hydrographie, climat","Habitat, champs","Routes"],r:1,e:"Relief, hydrographie, climat."},
+{c:"6e",s:2,t:"Milieu",q:"Composantes biologiques ?",o:["Relief","Végétation et faune","Routes","Usines"],r:1,e:"Végétation et faune."},
+{c:"6e",s:2,t:"Milieu",q:"Élément le plus actif d'un milieu ?",o:["Climat","Homme","Végétation","Eau"],r:1,e:"L'homme."},
+{c:"6e",s:2,t:"Milieu",q:"Différence milieu naturel/dégradé ?",o:["Naturel plus grand","Naturel = influence humaine quasi absente","Naturel en ville","Aucune"],r:1,e:"Influence humaine presque absente."},
+{c:"6e",s:2,t:"Zones thermiques",q:"Trois zones thermiques de la Terre ?",o:["Chaude, tempérée, polaire","Équatoriale, tropicale, désertique","Nord, Sud, centrale","Humide, sèche, froide"],r:0,e:"Polaire, chaude, tempérée."},
+{c:"6e",s:2,t:"Zones thermiques",q:"Zone chaude entre quels parallèles ?",o:["Cercles polaires","Cancer et Capricorne","Équateur et pôle Nord","Greenwich"],r:1,e:"Cancer et Capricorne."},
+{c:"6e",s:2,t:"Repères géo",q:"Qu'est-ce que l'équateur ?",o:["Méridien","Parallèle 40 000 km","Ligne pôles","Fuseau"],r:1,e:"Parallèle de 40 000 km."},
+{c:"6e",s:2,t:"Repères géo",q:"Qu'est-ce qu'un méridien ?",o:["Parallèle","Demi-cercle joignant les pôles","Zone horaire","Tropique"],r:1,e:"Demi-cercle pôles."},
+{c:"6e",s:2,t:"Repères géo",q:"Méridien principal ?",o:["Paris","Greenwich","Cotonou","Équateur"],r:1,e:"Greenwich."},
+{c:"6e",s:2,t:"Fuseaux",q:"Combien de fuseaux horaires ?",o:["12","24","36","48"],r:1,e:"24 fuseaux de 15°."},
+{c:"6e",s:2,t:"Coordonnées",q:"Longitude = ?",o:["Distance à l'équateur","Distance à Greenwich","Mer","Altitude"],r:1,e:"Distance à Greenwich."},
+{c:"6e",s:2,t:"Coordonnées",q:"Latitude = ?",o:["Distance à Greenwich","Distance à l'équateur","Pôle Nord","Superficie"],r:1,e:"Distance à l'équateur."},
+{c:"6e",s:2,t:"Continents",q:"Plus grand continent ?",o:["Afrique","Asie","Amérique","Europe"],r:1,e:"Asie (44 M km²)."},
+{c:"6e",s:2,t:"Continents",q:"Superficie de l'Afrique ?",o:["10,5 M km²","30,31 M km²","44 M km²","13 M km²"],r:1,e:"30 310 000 km²."},
+{c:"6e",s:2,t:"Ressources",q:"Principale ressource d'un milieu ?",o:["Forêt","Agriculture","Tourisme","Industrie"],r:1,e:"L'agriculture."},
+{c:"6e",s:3,t:"Religions",q:"Définition de la religion ?",o:["Sans spiritualité","Reconnaissance d'un être suprême","Lois civiles","Croyance pour adultes"],r:1,e:"Reconnaissance d'un être suprême."},
+{c:"6e",s:3,t:"Religions",q:"Grandes religions citées ?",o:["Vodoun, Christianisme, Judaïsme, Islam, Hinduïsme","Vodoun, Christianisme, Bouddhisme, Islam","Christianisme, Islam, Sikhisme","Vodoun, Animisme"],r:0,e:"Cinq grandes religions."},
+{c:"6e",s:3,t:"Religions",q:"Trois religions les plus pratiquées au Bénin ?",o:["Judaïsme, Hinduïsme, Christianisme","Vodoun, Christianisme, Islam","Vodoun, Judaïsme, Islam","Christianisme, Bouddhisme"],r:1,e:"Vodoun, Christianisme, Islam."},
+{c:"6e",s:3,t:"Religions",q:"Aire du Vodoun ?",o:["Asie et Europe","Afrique noire et Amérique","Europe et Amérique","Océanie"],r:1,e:"Afrique noire et Amérique."},
+{c:"6e",s:3,t:"Religions",q:"Aire du Christianisme ?",o:["Afrique uniquement","Europe, Afrique, Asie, Amérique","Asie uniquement","Océanie"],r:1,e:"Quatre continents."},
+{c:"6e",s:3,t:"Religions",q:"Aire de l'Islam ?",o:["Asie, Afrique, Europe, Amérique","Afrique uniquement","Europe","Amérique du Sud"],r:0,e:"Asie, Afrique, Europe, Amérique."},
+{c:"6e",s:3,t:"Religions",q:"Principe commun des trois religions ?",o:["Voyage interdit","Vol et meurtre interdits","Jeûne mensuel","Mariage"],r:1,e:"Interdiction de voler et tuer."},
+{c:"6e",s:3,t:"Religions",q:"Dieu unique en Islam ?",o:["Yahvé","Allah","Jésus","Bouddha"],r:1,e:"Allah."},
+{c:"6e",s:3,t:"Religions",q:"Principe du Christianisme ?",o:["Ramadan","Respect des parents","Respect du supérieur","Divination"],r:1,e:"Respect des parents, interdiction de voler et tuer."},
+{c:"6e",s:3,t:"Paix",q:"Principes de la paix ?",o:["Tolérance, amour, respect, liberté","Vengeance","Isolement","Richesse"],r:0,e:"Tolérance, amour, respect, liberté."},
+{c:"6e",s:3,t:"Paix",q:"Chef religieux au Bénin en 2011 ?",o:["Dalaï-Lama","Pape Benoît XVI","Pape Jean-Paul II","Archevêque"],r:1,e:"Benoît XVI en 2011."},
+{c:"6e",s:3,t:"Paix",q:"Conclusion du guide ?",o:["Toujours guerre","Source de paix et de tensions possibles","Aucun impact","Seules trad."],r:1,e:"Source de paix et de tensions."},
+{c:"6e",s:3,t:"Religions",q:"Principe du Vodoun ?",o:["Ramadan","Respect du prochain, parole donnée, Dieu unique","Plusieurs dieux","Pèlerinage"],r:1,e:"Respect et allégeance."},
+{c:"6e",s:3,t:"Paix",q:"Document international cité ?",o:["Charte ONU","DUDH du 10/12/1948","Genève","Rome"],r:1,e:"DUDH (1948)."},
+{c:"6e",s:3,t:"Religions",q:"Problématique centrale ?",o:["Pourquoi tant de religions ?","Les religions contribuent-elles à la culture de la paix ?","Convertir","Plus ancienne"],r:1,e:"Les religions et la paix."},
+{c:"6e",s:4,t:"Zones thermiques",q:"Pourquoi la chaleur est inégalement répartie ?",o:["Rotation","Sphéricité et inclinaison","Océans","Vents"],r:1,e:"Sphéricité et inclinaison."},
+{c:"6e",s:4,t:"Domaines",q:"Domaine équatorial typique ?",o:["Chaleur et humidité, forêt dense","Saison sèche","Dunes","Étagée"],r:0,e:"Chaleur, humidité, forêt dense."},
+{c:"6e",s:4,t:"Domaines",q:"Domaine tropical humide ?",o:["Pluies abondantes","Pluies décroissantes, savane","Saison sèche longue","Désert"],r:1,e:"Savane, sols ferrugineux."},
+{c:"6e",s:4,t:"Domaines",q:"Domaine désertique ?",o:["Forêt","Plus de 50°C, aridité, dunes","Savane","Étagée"],r:1,e:"Dunes et ergs."},
+{c:"6e",s:4,t:"Domaines",q:"Domaine de montagne ?",o:["Température constante","Température baisse en altitude","Ardité","Savane"],r:1,e:"Température baisse avec altitude."},
+{c:"6e",s:4,t:"Économie",q:"Richesse agricole du milieu intertropical ?",o:["Blé","Produits tropicaux variés","Fruits tempérés","Maïs"],r:1,e:"Produits tropicaux."},
+{c:"6e",s:4,t:"Économie",q:"Pourquoi la richesse minière cause l'instabilité ?",o:["Difficile à extraire","Convoitée par les puissances","Épuisée","Sans intérêt"],r:1,e:"Convoitée par les puissances."},
+{c:"6e",s:4,t:"Menaces",q:"Menace d'origine humaine ?",o:["Sécheresse","Défrichements abusifs","Cyclones","Séismes"],r:1,e:"Défrichements."},
+{c:"6e",s:4,t:"Solutions",q:"Solution pour protéger l'environnement ?",o:["Plus de défrichements","Arsenal juridique","Pâturages","Abandon"],r:1,e:"Loi cadre sur l'environnement."},
+{c:"6e",s:4,t:"Bénin",q:"Projet béninois de la SA n°4 ?",o:["Vallée de l'Ouémé","Port de Cotonou","Pétrole de Sèmè","Pendjari"],r:0,e:"Aménagement de la vallée de l'Ouémé."},
+{c:"6e",s:4,t:"Solutions",q:"Pays cité pour murs anti-érosion ?",o:["Bénin","Libye","Nigeria","Sénégal"],r:1,e:"La Libye."},
+{c:"6e",s:4,t:"Conclusion",q:"Conclusion sur le milieu intertropical ?",o:["Sans avenir","Atouts variés","Désertique","Agricole"],r:1,e:"Atouts variés et ressources appréciables."},
+{c:"6e",s:4,t:"Agriculture",q:"Cultures agro-alimentaires ?",o:["Blé","Tomate, ananas, café","Vigne","Betterave"],r:1,e:"Tomate, ananas, café."},
+{c:"6e",s:4,t:"Agriculture",q:"Pourquoi la plus productive ?",o:["Chaleur constante, pas d'hiver","Sols fertiles","Main-d'œuvre","Pluies"],r:0,e:"Chaleur constante, pas d'hiver."},
+{c:"6e",s:4,t:"Sahara",q:"Richesse du sous-sol saharien ?",o:["Or","Gaz et pétrole","Charbon","Uranium"],r:1,e:"Gaz et pétrole."},
+{c:"5e",s:1,t:"Civilisation",q:"Définition de la civilisation ?",o:["Caractères communs à un groupe humain","Art","Religion","Richesse"],r:0,e:"Ensemble des caractères communs."},
+{c:"5e",s:1,t:"Civilisation",q:"N'est PAS un élément constitutif ?",o:["Cadre géographique","Activités économiques","Mode de vie","Couleur de peau"],r:3,e:"La couleur de peau."},
+{c:"5e",s:1,t:"Égypte",q:"Cadre géographique de l'Égypte ?",o:["Niger","Nil","Congo","Sénégal"],r:1,e:"Vallée du Nil."},
+{c:"5e",s:1,t:"Égypte",q:"Durée de la civilisation égyptienne ?",o:["4e millénaire av. J.-C. au VIe ap. J.-C.","Ier au Xe s.","4e millénaire au Ier s. av. J.-C.","Xe au XVe"],r:0,e:"Du 4e millénaire av. J.-C. au VIe s. ap. J.-C."},
+{c:"5e",s:1,t:"Égypte",q:"Chef de l'Égypte pharaonique ?",o:["Vizir","Pharaon","Scribe","Gouverneur"],r:1,e:"Le pharaon, dieu absolu."},
+{c:"5e",s:1,t:"Égypte",q:"Chef du gouvernement ?",o:["Pharaon","Vizir","Gouverneur","Scribe"],r:1,e:"Le vizir."},
+{c:"5e",s:1,t:"Société",q:"Catégorie de privilégiés ?",o:["Paysans","Esclaves","Prêtres et scribes","Artisans"],r:2,e:"Prêtres et scribes."},
+{c:"5e",s:1,t:"Société",q:"Catégorie la plus nombreuse ?",o:["Prêtres","Scribes","Paysans","Soldats"],r:2,e:"Les paysans."},
+{c:"5e",s:1,t:"Économie",q:"Activité principale ?",o:["Commerce","Agriculture","Élevage","Mines"],r:1,e:"Agriculture."},
+{c:"5e",s:1,t:"Économie",q:"Voie principale de communication ?",o:["Méditerranée","Nil","Routes","Mer Rouge"],r:1,e:"Le Nil."},
+{c:"5e",s:1,t:"Culture",q:"Écriture égyptienne ?",o:["Latin","Hiéroglyphes","Cunéiforme","Grec"],r:1,e:"Hiéroglyphes."},
+{c:"5e",s:1,t:"Culture",q:"Technique funéraire ?",o:["Incinération","Momification","Enterrement en mer","Exposition"],r:1,e:"Momification."},
+{c:"5e",s:1,t:"Apports",q:"Apport pour les terres désertiques ?",o:["Barrages","Irrigation par canaux et digues","Tracteurs","Hydroponie"],r:1,e:"Irrigation par canaux."},
+{c:"5e",s:1,t:"Apports",q:"Métal travaillé ?",o:["Fer","Cuivre","Or","Aluminium"],r:1,e:"Cuivre."},
+{c:"5e",s:1,t:"Apports",q:"Support d'écriture inventé ?",o:["Parchemin","Papyrus","Papier","Tablette"],r:1,e:"Papyrus."},
+{c:"5e",s:2,t:"Paléo Bénin",q:"Période du Paléolithique au Bénin ?",o:["-500 000 à -8000","-8000 à -3000","-3000 à -500","-1M à -100 000"],r:0,e:"-500 000 à -8000."},
+{c:"5e",s:2,t:"Paléo Bénin",q:"Types d'hommes préhistoriques au Bénin ?",o:["Habilis","Erectus et Sapiens","Australopithèques","Néandertaliens"],r:1,e:"Erectus et Sapiens."},
+{c:"5e",s:2,t:"Paléo Bénin",q:"Site paléolithique béninois ?",o:["Tanguiéta et Tanongou","Koumbi Saleh","Alexandrie","Ouidah"],r:0,e:"Tanguiéta, Tanongou."},
+{c:"5e",s:2,t:"Paléo Bénin",q:"Vestiges découverts ?",o:["Galets aménagés, bifaces","Pyramides","Bijoux","Manuscrits"],r:0,e:"Galets aménagés, bifaces."},
+{c:"5e",s:2,t:"Néo Bénin",q:"Période du Néolithique au Bénin ?",o:["-500 000 à -8000","-8000 à -3000","-3000 à -500","-2000 à +500"],r:1,e:"-8000 à -3000."},
+{c:"5e",s:2,t:"Néo Bénin",q:"Outils néolithiques au Bénin ?",o:["Bifaces","Haches polies, meules","Épées","Bronze"],r:1,e:"Haches polies, meules."},
+{c:"5e",s:2,t:"Néo Bénin",q:"Plantes domestiquées ?",o:["Blé et orge","Igname, riz, voandzou","Pomme de terre","Café"],r:1,e:"Igname, riz, voandzou."},
+{c:"5e",s:2,t:"Proto Bénin",q:"Période de la protohistoire au Bénin ?",o:["-500 000 à -8000","-8000 à -3000","-2000 av. J.-C. à 500 ap. J.-C.","1000 à 1500"],r:2,e:"-2000 av. J.-C. à 500 ap. J.-C."},
+{c:"5e",s:2,t:"Proto Bénin",q:"Sites avec vestiges de fer ?",o:["Aplahoué, Pobè, Kalalé, Bensékou","Koumbi Saleh","Tanguiéta","Abomey"],r:0,e:"Aplahoué, Pobè, Kalalé, Bensékou."},
+{c:"5e",s:2,t:"Proto Bénin",q:"Activité en essor à l'âge du fer ?",o:["Commerce","Agriculture","Élevage","Pétrole"],r:1,e:"Agriculture."},
+{c:"5e",s:2,t:"Peuplement",q:"Peuple du Nord-Est avant le XIIIe s. ?",o:["Fon","Tchenga","Yoruba","Guédévi"],r:1,e:"Tchenga."},
+{c:"5e",s:2,t:"Peuplement",q:"Peuple du plateau d'Abomey avant les Fon ?",o:["Guédévi","Tchenga","Waaba","Natimba"],r:0,e:"Les Guédévi."},
+{c:"5e",s:2,t:"États",q:"Royaume Wassangari fondé au XVe s. ?",o:["Allada","Nikki","Djougou","Savi"],r:1,e:"Nikki."},
+{c:"5e",s:2,t:"États",q:"Royaume ayant accueilli les Portugais au XVIe s. ?",o:["Allada","Savi","Nikki","Djougou"],r:1,e:"Savi."},
+{c:"5e",s:2,t:"Peuplement",q:"Trois aires culturelles du Bénin ?",o:["Adja-Fon, Yoruba-Nago, Baatombu","Fon, Yoruba, Dendi","Adja, Bariba, Peul","Mina, Fon, Gun"],r:0,e:"Adja-Fon, Yoruba-Nago, Baatombu."},
+{c:"5e",s:3,t:"Localisation",q:"Milieux tempérés dans l'hémisphère Nord ?",o:["Cancer-Cercle polaire arctique","Équateur-Cancer","Pôle Nord","Capricorne-Équateur"],r:0,e:"Cancer au cercle polaire arctique."},
+{c:"5e",s:3,t:"Climat",q:"Particularité climatique des milieux tempérés ?",o:["Deux saisons","Quatre saisons","Chaleur constante","Pluies quotidiennes"],r:1,e:"Quatre saisons."},
+{c:"5e",s:3,t:"Domaines",q:"Domaine océanique ?",o:["Façades maritimes","Intérieur","Désert","Pas de saisons"],r:0,e:"Façades maritimes."},
+{c:"5e",s:3,t:"Domaines",q:"Domaine continental ?",o:["Climat doux","Hiver froid, été chaud","Été sec","Équatorial"],r:1,e:"Hiver froid, été chaud."},
+{c:"5e",s:3,t:"Domaines",q:"Domaine méditerranéen ?",o:["Été chaud et sec, hiver doux et pluvieux","Été frais","Pluies abondantes","Aucune saison"],r:0,e:"Été chaud et sec, hiver doux et pluvieux."},
+{c:"5e",s:3,t:"Végétation",q:"Végétation méditerranéenne ?",o:["Forêt dense","Maquis et garrigue","Savane arborée","Steppe"],r:1,e:"Maquis et garrigue."},
+{c:"5e",s:3,t:"Civilisation",q:"Civilisation des milieux tempérés ?",o:["Modernisme et recherche","Nomade","Agricole traditionnelle","Sans écriture"],r:0,e:"Modernisme."},
+{c:"5e",s:3,t:"Économie",q:"Système économique dominant ?",o:["Communisme","Libéralisme","Subsistance","Troc"],r:1,e:"Libéralisme."},
+{c:"5e",s:3,t:"Pôles",q:"Pôles de développement en Amérique ?",o:["USA, Canada, Argentine","Brésil et Pérou","Mexique et Cuba","Colombie"],r:0,e:"USA, Canada, Argentine."},
+{c:"5e",s:3,t:"Pôles",q:"Pôles de développement en Asie ?",o:["Inde et Pakistan","Chine, Russie, Japon, Moyen-Orient","Indonésie","Vietnam"],r:1,e:"Chine, Russie, Japon, Moyen-Orient."},
+{c:"5e",s:3,t:"Pôles",q:"Pôles en Océanie ?",o:["Papouasie","Australie et Nouvelle-Zélande","Salomon","Vanuatu"],r:1,e:"Australie, Nouvelle-Zélande."},
+{c:"5e",s:3,t:"Contraintes",q:"Contrainte industrielle ?",o:["Pollution","Baisse des richesses","Chute démographique","Plus de terres"],r:0,e:"Pollution."},
+{c:"5e",s:3,t:"Contraintes",q:"Conséquence de la concentration urbaine ?",o:["Baisse du chômage","Hausse du chômage","Meilleure répartition","Fin des inégalités"],r:1,e:"Hausse du chômage."},
+{c:"5e",s:3,t:"Solutions",q:"Solution pour protéger l'environnement ?",o:["Parcs nationaux","Plus d'usines","Suppression des forêts","Arrêt du tourisme"],r:0,e:"Parcs nationaux."},
+{c:"5e",s:3,t:"Solutions",q:"Tourisme à promouvoir ?",o:["Tourisme de masse","Écotourisme","Balnéaire","Hivernal"],r:1,e:"Écotourisme."},
+{c:"5e",s:4,t:"Afrique",q:"Expression pour les Xe-XVIe siècles en Afrique ?",o:["Âge d'or de l'Afrique","Renaissance africaine","Moyen Âge africain","Ère coloniale"],r:0,e:"Âge d'or de l'Afrique."},
+{c:"5e",s:4,t:"Empires",q:"Trois grands empires africains ?",o:["Ghana, Mali, Songhaï","Égypte, Nubie, Axoum","Congo, Monomotapa, Zoulou","Kanem, Bornou"],r:0,e:"Ghana, Mali, Songhaï."},
+{c:"5e",s:4,t:"Empires",q:"Empire d'Afrique australe entre Limpopo et Zambèze ?",o:["Ghana","Monomotapa","Mali","Songhaï"],r:1,e:"Monomotapa."},
+{c:"5e",s:4,t:"Sahara",q:"Rôle du Sahara ?",o:["Isolement","Voie commerciale Nord-Sud","Obstacle","Aucun"],r:1,e:"Voie commerciale Nord-Sud."},
+{c:"5e",s:4,t:"Ghana",q:"Dynastie ayant créé le Ghana ?",o:["Mandingues","Sarakolé","Songhaï","Peuls"],r:1,e:"Sarakolé."},
+{c:"5e",s:4,t:"Ghana",q:"Extension du Ghana au IXe siècle ?",o:["Aoudaghost, Oualata, Bambouk, Bouré, jusqu'au Niger","Sénégal uniquement","Mali uniquement","Égypte au Maroc"],r:0,e:"Du Nord du désert au Niger."},
+{c:"5e",s:4,t:"Ghana",q:"Capitale du Ghana ?",o:["Tombouctou","Koumbi Saleh","Gao","Niani"],r:1,e:"Koumbi Saleh."},
+{c:"5e",s:4,t:"Ghana",q:"Titre de l'empereur du Ghana ?",o:["Mansa","Tounka ou Khaya Maghan","Askia","Sultan"],r:1,e:"Tounka ou Khaya Maghan."},
+{c:"5e",s:4,t:"Ghana",q:"Base du développement économique du Ghana ?",o:["Agriculture","Commerce de l'or","Élevage","Pêche"],r:1,e:"Commerce de l'or."},
+{c:"5e",s:4,t:"Ghana",q:"Succession de l'Empereur ?",o:["Fils aîné","Fils aîné de la sœur aînée","Élu","Prêtres"],r:1,e:"Fils aîné de la sœur aînée."},
+{c:"5e",s:4,t:"Commerce",q:"Produits du commerce caravanier ?",o:["Or, sel, cuivre, tissus, esclaves, cauris","Or uniquement","Sel uniquement","Tissus uniquement"],r:0,e:"Or, sel, cuivre, tissus, esclaves, cauris."},
+{c:"5e",s:4,t:"Déclin",q:"Puissance ayant mis fin au Ghana en 1076-1077 ?",o:["Almoravides","Mandingues","Songhaï","Portugais"],r:0,e:"Almoravides."},
+{c:"5e",s:4,t:"Déclin",q:"Empire ayant absorbé le Ghana au XIIIe siècle ?",o:["Songhaï","Mali","Monomotapa","Kanem"],r:1,e:"Le Mali."},
+{c:"5e",s:4,t:"Économie",q:"Première activité des grands empires selon Ki-Zerbo ?",o:["Agriculture","Commerce","Élevage","Pêche"],r:1,e:"Le commerce."},
+{c:"5e",s:4,t:"Politique",q:"Type d'organisation politique ?",o:["États instables","États stables et centralisés","Démocraties","Cités-États"],r:1,e:"États stables et centralisés."},
+{c:"4e",s:1,t:"Traite",q:"Origine de la traite transatlantique ?",o:["Découverte de l'Amérique et mise en valeur","Révolution française","Croisades","Guerre de Cent Ans"],r:0,e:"Découverte de l'Amérique."},
+{c:"4e",s:1,t:"Traite",q:"Trois continents imbriqués ?",o:["Europe, Afrique, Amérique","Asie, Europe, Afrique","Amérique, Asie, Océanie","Afrique, Asie, Océanie"],r:0,e:"Europe, Afrique, Amérique."},
+{c:"4e",s:1,t:"Traite",q:"Durée de la traite transatlantique ?",o:["XVIe-XIXe siècle","Xe-XIIe","XXe-XXIe","Avant J.-C."],r:0,e:"XVIe au XIXe siècle."},
+{c:"4e",s:1,t:"Traite",q:"Origine de la demande de main-d'œuvre ?",o:["Mines et plantations en Amérique","Usines en Europe","Caravanes","Pêche"],r:0,e:"Mines et plantations."},
+{c:"4e",s:1,t:"Organisation",q:"Rôle des compagnies à charte ?",o:["Transport des esclaves","Commerce du sel","Exploration","Missionnaire"],r:0,e:"Transport des esclaves."},
+{c:"4e",s:1,t:"Organisation",q:"Intermédiaires en Afrique ?",o:["Courtiers africains","Amérindiens","Asiatiques","Océaniens"],r:0,e:"Courtiers africains."},
+{c:"4e",s:1,t:"Royaumes",q:"Petites entités côtières du Bénin ?",o:["Agoué, Jaquin, Ouidah, Kutonu","Abomey, Kandi","Nikki, Djougou","Porto-Novo uniquement"],r:0,e:"Agoué, Jaquin, Ouidah, Kutonu."},
+{c:"4e",s:1,t:"Royaumes",q:"Rôle du royaume d'Allada ?",o:["Participation à la traite","Refus","Résistance armée","Neutre"],r:0,e:"Allada a participé."},
+{c:"4e",s:1,t:"Royaumes",q:"Rôle du royaume de Porto-Novo ?",o:["Participation à la traite","Refus","Résistance","Isolation"],r:0,e:"Porto-Novo a participé."},
+{c:"4e",s:1,t:"Royaumes",q:"Quel royaume était la « grande pourvoyeuse » ?",o:["Allada","Porto-Novo","Abomey","Savi"],r:2,e:"Abomey."},
+{c:"4e",s:1,t:"Conséquences",q:"Conséquences pour les royaumes côtiers ?",o:["Multiformes","Uniquement économiques","Aucune","Uniquement positives"],r:0,e:"Conséquences multiformes."},
+{c:"4e",s:1,t:"Débats",q:"Débat actuel sur la traite ?",o:["Question des revendications","Retour des esclaves","Réouverture","Aucun débat"],r:0,e:"Revendications."},
+{c:"4e",s:1,t:"Débats",q:"Option proposée face aux revendications ?",o:["Option conciliatrice","Vengeance","Indifférence","Négation"],r:0,e:"Option conciliatrice."},
+{c:"4e",s:1,t:"Conséquences",q:"Conséquence durable de la traite ?",o:["Tensions entre peuples","Paix durable","Unité totale","Disparition"],r:0,e:"Tensions encore présentes."},
+{c:"4e",s:1,t:"Conclusion",q:"Conséquence positive mentionnée ?",o:["Rapprochement des continents","Développement de l'Afrique","Paix mondiale","Aucune"],r:0,e:"Rapprochement des continents."},
+{c:"4e",s:2,t:"Milieu béninien",q:"Étendue du milieu béninien ?",o:["Côte à Savè","Côte à Bembèrèkè","Côte au Niger","Sud uniquement"],r:0,e:"Côte à Savè."},
+{c:"4e",s:2,t:"Milieu béninien",q:"Caractéristique du relief béninien ?",o:["Peu accidenté","Très montagneux","Désertique","Volcanique"],r:0,e:"Peu accidenté."},
+{c:"4e",s:2,t:"Milieu béninien",q:"Combien de saisons annuelles ?",o:["Une","Deux","Trois","Quatre"],r:1,e:"Deux saisons."},
+{c:"4e",s:2,t:"Milieu béninien",q:"Pluviométrie annuelle ?",o:["200-500 mm","800-1300 mm","1500-2000 mm","2500 mm+"],r:1,e:"800 à 1300 mm."},
+{c:"4e",s:2,t:"Sols",q:"Sols favorables à l'agriculture ?",o:["Hydromorphes fertiles, vallées alluviales","Arides","Salés","Volcaniques"],r:0,e:"Hydromorphes fertiles."},
+{c:"4e",s:2,t:"Végétation",q:"Végétations variées du milieu béninien ?",o:["Mangrove, bois d'œuvre","Steppe","Forêt boréale","Toundra"],r:0,e:"Mangrove, bois d'œuvre."},
+{c:"4e",s:2,t:"Ressources",q:"Atout de l'Océan Atlantique ?",o:["Ouverture au monde et échanges","Isolement","Aucun","Désertification"],r:0,e:"Ouverture au monde."},
+{c:"4e",s:2,t:"Ressources",q:"Ressources minières du Bénin ?",o:["Calcaire d'Onigbolo, marbre d'Idadjo","Pétrole","Diamants","Uranium"],r:0,e:"Calcaire, eau minérale, marbre."},
+{c:"4e",s:2,t:"Sud-soudanien",q:"Étendue du milieu sud-soudanien ?",o:["Savè à Bembèrèkè","Côte à Savè","Bembèrèkè au Niger","Sud uniquement"],r:0,e:"Savè à Bembèrèkè."},
+{c:"4e",s:2,t:"Nord-soudanien",q:"Étendue du milieu nord-soudanien ?",o:["Bembèrèkè au fleuve Niger","Côte à Savè","Sud","Savè à Bembèrèkè"],r:0,e:"Bembèrèkè au Niger."},
+{c:"4e",s:2,t:"Atacora",q:"Point culminant du milieu atacorien ?",o:["Mont Sagbarao (658 m)","Kilimandjaro","Cameroun","Sokbaro"],r:0,e:"Mont Sagbarao."},
+{c:"4e",s:2,t:"Parcs",q:"Parcs nationaux du Bénin ?",o:["Pendjari et W","Serengeti","Kruger","Yellowstone"],r:0,e:"Pendjari et W."},
+{c:"4e",s:2,t:"Faune",q:"Animaux du milieu nord-soudanien ?",o:["Buffles, girafes, éléphants, lions","Pingouins","Ours polaires","Kangourous"],r:0,e:"Faune variée."},
+{c:"4e",s:2,t:"Contraintes",q:"Contrainte du milieu nord-soudanien ?",o:["Avancée du désert, fortes chaleurs","Excès d'humidité","Séismes","Volcans"],r:0,e:"Avancée du désert."},
+{c:"4e",s:2,t:"Conclusion",q:"Conclusion sur les milieux naturels béninois ?",o:["Diversité et complémentarité favorables","Uniquement contraignants","Sans intérêt","Désertiques"],r:0,e:"Diversité favorable."},
+{c:"4e",s:3,t:"Droits",q:"Qu'est-ce qu'un droit de l'Homme ?",o:["Prérogative inhérente à la personne humaine","Privilège d'État","Faveur","Récompense"],r:0,e:"Prérogative inhérente."},
+{c:"4e",s:3,t:"Droits",q:"Caractéristique des droits de l'Homme ?",o:["Universels, inaliénables, indivisibles","Réservés aux adultes","Réservés aux riches","Optionnels"],r:0,e:"Universels, inaliénables, indivisibles."},
+{c:"4e",s:3,t:"Droits",q:"Grande catégorie de droits ?",o:["Civils, politiques, économiques, sociaux, culturels","Uniquement civils","Uniquement politiques","Aucune"],r:0,e:"Civils, politiques, économiques, sociaux, culturels."},
+{c:"4e",s:3,t:"Droits",q:"Qu'est-ce qu'un devoir du citoyen ?",o:["Obligation envers la communauté","Privilège","Option","Aucune obligation"],r:0,e:"Obligation envers la communauté."},
+{c:"4e",s:3,t:"Violations",q:"Formes de violation des droits ?",o:["Enfants, femmes, handicapés, travailleurs, réfugiés","Uniquement adultes","Uniquement hommes","Aucune"],r:0,e:"Plusieurs catégories touchées."},
+{c:"4e",s:3,t:"Violations",q:"Niveaux de violation ?",o:["Local, national, international","Local uniquement","International uniquement","Aucun"],r:0,e:"Local, national et international."},
+{c:"4e",s:3,t:"Génocide",q:"Qu'est-ce qu'un génocide ?",o:["Extermination systématique d'un groupe","Guerre civile","Conflit frontalier","Coup d'État"],r:0,e:"Extermination systématique."},
+{c:"4e",s:3,t:"Génocide",q:"Exemple de génocide en Afrique ?",o:["Génocide des Tutsi au Rwanda (1994)","Guerre du Biafra","Apartheid","Guerre du Golfe"],r:0,e:"Tutsi rwandais (1994)."},
+{c:"4e",s:3,t:"Génocide",q:"Exemple de génocide dans le monde ?",o:["La Shoah","Révolution française","Croisades","Guerre froide"],r:0,e:"La Shoah."},
+{c:"4e",s:3,t:"Textes",q:"Texte international fondamental de 1948 ?",o:["DUDH","Charte ONU","Genève","Rome"],r:0,e:"DUDH du 10 décembre 1948."},
+{c:"4e",s:3,t:"Textes",q:"Texte africain des droits de l'Homme ?",o:["Charte Africaine des Droits de l'Homme et des Peuples","Charte de l'OUA","Traité de l'UA","Protocole de Maputo"],r:0,e:"CADHP."},
+{c:"4e",s:3,t:"Paix",q:"Culture de la paix repose sur ?",o:["Tolérance, pardon, réconciliation","Vengeance","Domination","Exclusion"],r:0,e:"Tolérance, pardon, réconciliation."},
+{c:"4e",s:3,t:"Paix",q:"Instruments de règlement des violations ?",o:["Tribunaux, commissions, sanctions","Force uniquement","Bannissement","Aucun"],r:0,e:"Tribunaux, commissions, sanctions."},
+{c:"4e",s:3,t:"Paix",q:"Lien entre droits de l'Homme et paix sociale ?",o:["Respect des droits = garantie de la paix","Aucun lien","Opposition","Les droits créent les conflits"],r:0,e:"Respect = gage de paix."},
+{c:"4e",s:3,t:"Conclusion",q:"Cause majeure des violations selon le guide ?",o:["Ignorance et non-application des textes","Absence de textes","Manque de tribunaux","Aucune cause"],r:0,e:"Ignorance et non-application."},
+{c:"4e",s:4,t:"Démographie",q:"Population du Bénin en 1979 ?",o:["3,3 millions","6,9 millions","10 millions","22 millions"],r:0,e:"3,3 millions."},
+{c:"4e",s:4,t:"Démographie",q:"Population du Bénin en 2013 ?",o:["6,9 M","9,98 M","15 M","22 M"],r:1,e:"9 983 884 habitants."},
+{c:"4e",s:4,t:"Démographie",q:"Projection de la population en 2050 ?",o:["15 M","18,8 M","22,1 M","30 M"],r:2,e:"22,1 millions."},
+{c:"4e",s:4,t:"Natalité",q:"Taux de natalité au Bénin en 2012 ?",o:["19‰","29‰","39‰","49‰"],r:3,e:"49‰."},
+{c:"4e",s:4,t:"Mortalité",q:"Taux de mortalité au Bénin en 2012 ?",o:["9‰","19‰","29‰","49‰"],r:1,e:"19‰."},
+{c:"4e",s:4,t:"Accroissement",q:"Taux d'accroissement naturel (2002-2013) ?",o:["1%","2%","3%","5%"],r:2,e:"3%."},
+{c:"4e",s:4,t:"Migrations",q:"Exemple de migration interne ?",o:["Exode rural","Émigration vers le Canada","Départ vers le Gabon","Trafic d'enfants"],r:0,e:"Exode rural."},
+{c:"4e",s:4,t:"Migrations",q:"Exemple de migration externe ?",o:["Départ vers Canada, USA, Europe","Exode rural","Ville-banlieue","Pendulaires"],r:0,e:"Départ vers pays développés."},
+{c:"4e",s:4,t:"Migrations",q:"Qu'est-ce que le solde migratoire ?",o:["Différence immigrés/émigrés","Nombre de naissances","Nombre de décès","Total population"],r:0,e:"Différence immigrés/émigrés."},
+{c:"4e",s:4,t:"Problèmes",q:"Problème urbain lié à la démographie ?",o:["Bidonvilles, chômage, insécurité","Excès de terres","Baisse de population","Trop d'emplois"],r:0,e:"Bidonvilles, chômage, insécurité."},
+{c:"4e",s:4,t:"Problèmes",q:"Problème rural lié à la démographie ?",o:["Fécondité élevée, départ des jeunes","Excès d'industries","Saturation urbaine","Trop d'écoles"],r:0,e:"Fécondité élevée, départ des jeunes."},
+{c:"4e",s:4,t:"Mesures",q:"Mesure pour la gestion démographique ?",o:["IEC, planification familiale","Plus de naissances","Moins d'écoles","Aucune"],r:0,e:"IEC, planification familiale."},
+{c:"4e",s:4,t:"Structure",q:"Part de la population de moins de 15 ans ?",o:["17%","27%","37%","47%"],r:3,e:"47%."},
+{c:"4e",s:4,t:"Structure",q:"Forme de la pyramide des âges du Bénin ?",o:["Très jeune (base large)","Vieillissante","Inversée","Cylindrique"],r:0,e:"Pyramide très jeune."},
+{c:"4e",s:4,t:"Conclusion",q:"Conclusion du guide sur la démographie béninoise ?",o:["Déséquilibre population/ressources","Équilibre parfait","Aucun problème","Population stable"],r:0,e:"Déséquilibre."},
+{c:"3e",s:1,t:"Mouvement ouvrier",q:"Sujet de la SA n°1 ?",o:["Mouvement ouvrier en Europe","Traite négrière","Impérialisme","CEDEAO"],r:0,e:"Mouvement ouvrier en Europe."},
+{c:"3e",s:1,t:"Sciences",q:"Savants cités pour la physique/chimie ?",o:["Pierre et Marie Curie, Einstein","Newton et Galilée","Pasteur et Darwin","Franklin et Edison"],r:0,e:"Pierre et Marie Curie, Einstein."},
+{c:"3e",s:1,t:"Techniques",q:"Progrès techniques dans l'énergie ?",o:["Houille blanche, pétrole, électricité","Charbon uniquement","Vent et soleil","Nucléaire"],r:0,e:"Houille blanche, pétrole, électricité."},
+{c:"3e",s:1,t:"Agriculture",q:"Transformation de l'agriculture par les machines ?",o:["Mécanisée, scientifique, haute productivité","Manuelle","Aucune","Recul"],r:0,e:"Mécanisée, scientifique."},
+{c:"3e",s:1,t:"Industrie",q:"Conséquence sur l'industrie ?",o:["Passage des métiers à main aux métiers mécaniques","Retour à l'artisanat","Disparition","Stagnation"],r:0,e:"Métiers mécaniques."},
+{c:"3e",s:1,t:"Classes",q:"Naissance de deux classes antagonistes ?",o:["Bourgeoisie et prolétariat","Noblesse et clergé","Paysans et artisans","Militaires et civils"],r:0,e:"Bourgeoisie et prolétariat."},
+{c:"3e",s:1,t:"Prolétariat",q:"Conditions de travail des ouvriers ?",o:["Longues journées, ateliers insalubres","Bonnes conditions","Indépendants","Peu de travail"],r:0,e:"Longues journées, ateliers insalubres."},
+{c:"3e",s:1,t:"Prolétariat",q:"Conditions de vie des ouvriers ?",o:["Logements chers et insalubres, malnutrition","Confortables","Riches","Aucun problème"],r:0,e:"Logements chers et insalubres."},
+{c:"3e",s:1,t:"Définitions",q:"Qu'est-ce que le truck system ?",o:["Payer en nature une partie du salaire","Système de transport","Salaire en or","Assurance"],r:0,e:"Payer en nature."},
+{c:"3e",s:1,t:"Définitions",q:"Qu'est-ce que le livret ouvrier ?",o:["Carnet où le patron inscrit ses remarques","Livre d'histoire","Carte d'identité","Journal intime"],r:0,e:"Carnet obligatoire."},
+{c:"3e",s:1,t:"Syndicats",q:"Exemples de syndicats cités ?",o:["Trade Unions, AFL, CGT","ONU, UNESCO","Croix-Rouge","Greenpeace"],r:0,e:"Trade Unions, AFL, CGT."},
+{c:"3e",s:1,t:"Socialisme",q:"Penseur du socialisme cité ?",o:["Karl Marx","Adam Smith","Rousseau","Montesquieu"],r:0,e:"Karl Marx."},
+{c:"3e",s:1,t:"Acquis",q:"Acquis des luttes ouvrières ?",o:["Réduction du temps de travail, congés payés","Retour au travail des enfants","Baisse des salaires","Aucun acquis"],r:0,e:"Réduction du temps, congés payés."},
+{c:"3e",s:1,t:"Acquis",q:"Portée internationale du mouvement ouvrier ?",o:["Syndicats pour tous les travailleurs","Limité à l'Europe","Aucune","Retour en arrière"],r:0,e:"Syndicats pour tous."},
+{c:"3e",s:1,t:"Tendance",q:"Tendance actuelle du mouvement ouvrier ?",o:["Réformisme et négociation","Révolution armée","Disparition","Radicalisation"],r:0,e:"Réformisme."},
+{c:"3e",s:2,t:"Ressources",q:"Définition d'une ressource disponible ?",o:["Éléments dont l'exploitation conditionne le développement","Richesse naturelle","Produit industriel","Aucune"],r:0,e:"Éléments dont l'exploitation conditionne le développement."},
+{c:"3e",s:2,t:"Ressources",q:"L'homme est-il une ressource ?",o:["Oui, ressource humaine","Non","Parfois","Jamais"],r:0,e:"Ressource humaine."},
+{c:"3e",s:2,t:"Agricoles",q:"Ressources agricoles du Bénin ?",o:["Coton, maïs, manioc, sorgho, palmier","Blé, orge","Vigne, olivier","Riz uniquement"],r:0,e:"Coton, maïs, manioc, sorgho, palmier."},
+{c:"3e",s:2,t:"Agricoles",q:"Contribution de l'agriculture au PIB ?",o:["10%","20%","40%","80%"],r:2,e:"40% du PIB."},
+{c:"3e",s:2,t:"Ligneuses",q:"Menaces sur les ressources ligneuses ?",o:["Monoculture du coton, feux, charbon","Protection","Aucune","Reboisement"],r:0,e:"Monoculture, feux tardifs."},
+{c:"3e",s:2,t:"Halieutiques",q:"Atouts halieutiques du Bénin ?",o:["125 km de côte, lagunes, lacs","Aucun","Nord uniquement","Désertique"],r:0,e:"125 km de côte, lagunes."},
+{c:"3e",s:2,t:"Minières",q:"Ressources minières du Bénin ?",o:["Or, fer, phosphate, chrome, calcaire, marbre","Pétrole uniquement","Diamants","Uranium"],r:0,e:"Or, fer, phosphate, chrome."},
+{c:"3e",s:2,t:"Énergétiques",q:"Ressources énergétiques citées ?",o:["Pétrole de Sèmè, gaz, tourbe","Charbon","Nucléaire","Géothermie"],r:0,e:"Pétrole et gaz à Sèmè."},
+{c:"3e",s:2,t:"Énergétiques",q:"Autres énergies renouvelables évoquées ?",o:["Éolienne et solaire","Nucléaire","Charbon","Marémotrice"],r:0,e:"Éolienne et solaire."},
+{c:"3e",s:2,t:"Humaines",q:"Montant du SMIG cité ?",o:["27 000 FCFA","50 000 FCFA","100 000 FCFA","10 000 FCFA"],r:0,e:"27 000 FCFA."},
+{c:"3e",s:2,t:"Touristiques",q:"Sites touristiques cités ?",o:["Palais royaux, Pendjari, Tanougou","Tour Eiffel","Pyramides","Grande Muraille"],r:0,e:"Palais, Pendjari, Tanougou."},
+{c:"3e",s:2,t:"Industrie",q:"Cause de la faible industrialisation ?",o:["Code inadapté, tissu désarticulé","Trop d'usines","Trop de matières","Manque de population"],r:0,e:"Code inadapté."},
+{c:"3e",s:2,t:"Dépendance",q:"Conséquence de la mauvaise gestion ?",o:["Balance déficitaire, endettement","Autonomie","Développement","Richesses"],r:0,e:"Balance déficitaire."},
+{c:"3e",s:2,t:"Défis",q:"Défi à relever pour le Bénin ?",o:["Valorisation des ressources, indépendance énergétique","Réduire la production","Fermer les écoles","Aucun défi"],r:0,e:"Valorisation, indépendance énergétique."},
+{c:"3e",s:2,t:"Solutions",q:"Approche de solution proposée ?",o:["Agriculture = base, industrie = moteur","Tout importer","Arrêter l'agriculture","Fermer les frontières"],r:0,e:"Agriculture = base."},
+{c:"3e",s:3,t:"Impérialisme",q:"Qu'est-ce que l'impérialisme ?",o:["Politique de domination d'un État sur d'autres peuples","Coopération","Libre-échange","Isolationnisme"],r:0,e:"Domination d'un État sur d'autres peuples."},
+{c:"3e",s:3,t:"Causes",q:"Causes économiques de l'impérialisme ?",o:["Placement de capitaux, matières premières, débouchés","Religion","Démographie","Aucune cause économique"],r:0,e:"Placement de capitaux."},
+{c:"3e",s:3,t:"Causes",q:"Cause démographique de l'impérialisme ?",o:["Recherche de terres pour le surplus démographique","Baisse de la population","Vieillissement","Manque de main-d'œuvre"],r:0,e:"Recherche de terres."},
+{c:"3e",s:3,t:"Causes",q:"Cause politique de l'impérialisme ?",o:["Quête de puissance et de gloire","Démocratie","Paix","Désarmement"],r:0,e:"Quête de puissance."},
+{c:"3e",s:3,t:"Causes",q:"Prétexte utilisé par les Européens ?",o:["Mission civilisatrice","Mission religieuse","Mission scientifique","Mission humanitaire"],r:0,e:"Mission civilisatrice."},
+{c:"3e",s:3,t:"Méthodes",q:"Acteurs de la pénétration européenne ?",o:["Explorateurs, missionnaires, marchands, militaires","Paysans","Artistes","Sportifs"],r:0,e:"Explorateurs, missionnaires, marchands, militaires."},
+{c:"3e",s:3,t:"Berlin",q:"Conférence de Berlin : dates ?",o:["1884-1885","1789","1914-1918","1945"],r:0,e:"1884-1885."},
+{c:"3e",s:3,t:"Berlin",q:"Rôle de la Conférence de Berlin ?",o:["Organiser le partage de l'Afrique","Abolir l'esclavage","Créer l'ONU","Décoloniser"],r:0,e:"Partage de l'Afrique."},
+{c:"3e",s:3,t:"Formes",q:"Système colonial britannique ?",o:["Indirect Rule","Administration directe","Assimilation","Paternalisme"],r:0,e:"Indirect Rule."},
+{c:"3e",s:3,t:"Formes",q:"Système colonial français ?",o:["Administration directe et assimilation","Indirect Rule","Paternalisme","Aucun"],r:0,e:"Administration directe."},
+{c:"3e",s:3,t:"Formes",q:"Colonisation belge en Afrique ?",o:["Congo belge et Rwanda-Urundi","Algérie","Inde","Afrique du Sud"],r:0,e:"Congo belge et Rwanda-Urundi."},
+{c:"3e",s:3,t:"Formes",q:"Colonisation portugaise ?",o:["Angola, Mozambique, Guinée-Bissau","Algérie","Égypte","Maroc"],r:0,e:"Angola, Mozambique, Guinée-Bissau."},
+{c:"3e",s:3,t:"Conséquences",q:"Avantage de la colonisation pour l'Europe ?",o:["Exploitation des ressources, débouchés","Perte de puissance","Appauvrissement","Déclin"],r:0,e:"Exploitation des ressources."},
+{c:"3e",s:3,t:"Conséquences",q:"Conséquence de la colonisation pour l'Afrique ?",o:["Pillage, dépendance, balkanisation","Développement autonome","Unité","Prospérité"],r:0,e:"Pillage, dépendance, balkanisation."},
+{c:"3e",s:3,t:"Conséquences",q:"Qu'est-ce que la balkanisation ?",o:["Morcellement de l'Afrique en petits États","Unification","Développement","Indépendance"],r:0,e:"Morcellement en petits États."},
+{c:"3e",s:4,t:"CEDEAO",q:"Sujet de la SA n°4 ?",o:["CEDEAO, exemple d'intégration","Traite","Impérialisme","Mouvement ouvrier"],r:0,e:"CEDEAO, exemple d'intégration."},
+{c:"3e",s:4,t:"Intégration",q:"Définition de l'intégration économique ?",o:["Mise en commun de potentialités entre États","Fermeture des frontières","Autarcie","Guerre économique"],r:0,e:"Mise en commun."},
+{c:"3e",s:4,t:"CEDEAO",q:"Date de création de la CEDEAO ?",o:["1975 (Traité de Lagos)","1960","1990","2000"],r:0,e:"1975."},
+{c:"3e",s:4,t:"CEDEAO",q:"Combien de pays membres ?",o:["15","10","20","5"],r:0,e:"15 pays."},
+{c:"3e",s:4,t:"CEDEAO",q:"Siège de la CEDEAO ?",o:["Abuja (Nigeria)","Cotonou","Dakar","Accra"],r:0,e:"Abuja."},
+{c:"3e",s:4,t:"CEDEAO",q:"Objectif principal de la CEDEAO ?",o:["Intégration économique et libre circulation","Domination militaire","Colonisation","Fermeture"],r:0,e:"Intégration économique."},
+{c:"3e",s:4,t:"CEDEAO",q:"Libre circulation dans la CEDEAO concerne ?",o:["Personnes et biens","Biens uniquement","Personnes uniquement","Aucune"],r:0,e:"Personnes et biens."},
+{c:"3e",s:4,t:"CEDEAO",q:"Projet de monnaie unique ?",o:["L'Eco","Franc CFA","Naira","Cédi"],r:0,e:"L'Eco."},
+{c:"3e",s:4,t:"CEDEAO",q:"Organe principal ?",o:["Conférence des chefs d'État","Assemblée nationale","Tribunal","Sénat"],r:0,e:"Conférence des chefs d'État."},
+{c:"3e",s:4,t:"Potentialités",q:"Potentialités de l'espace CEDEAO ?",o:["Ressources naturelles, population, marché","Désert","Aucune","Faible population"],r:0,e:"Richesses naturelles."},
+{c:"3e",s:4,t:"Avantages",q:"Avantage de l'intégration ?",o:["Marché élargi, paix, développement","Fermeture","Conflits","Appauvrissement"],r:0,e:"Marché élargi, paix."},
+{c:"3e",s:4,t:"Obstacles",q:"Obstacle à l'intégration CEDEAO ?",o:["Barrières douanières, monnaies multiples","Manque de pays","Aucun obstacle","Trop de routes"],r:0,e:"Barrières douanières."},
+{c:"3e",s:4,t:"Réalisations",q:"Réalisation concrète de la CEDEAO ?",o:["Libre circulation des personnes et biens","Monnaie unique","Armée commune","Langue unique"],r:0,e:"Libre circulation."},
+{c:"3e",s:4,t:"CEDEAO",q:"Exemple de regroupement antérieur cité ?",o:["CEAO, Conseil de l'Entente, OMVS","OTAN","Union européenne","ALENA"],r:0,e:"CEAO, Conseil de l'Entente, OMVS."},
+{c:"3e",s:4,t:"Conclusion",q:"Objectif final de la CEDEAO ?",o:["Réelle intégration économique","Création d'un empire","Colonisation","Isolement"],r:0,e:"Réelle intégration."},
+{c:"3e",s:5,t:"Résistances",q:"Sujet de la SA n°5 ?",o:["Résistances africaines face à l'impérialisme","CEDEAO","Mouvement ouvrier","Traite"],r:0,e:"Résistances africaines."},
+{c:"3e",s:5,t:"Samory",q:"Résistant en pays mandingue ?",o:["Samory Touré","Ménélik II","Béhanzin","Bio Guera"],r:0,e:"Samory Touré."},
+{c:"3e",s:5,t:"Samory",q:"Type d'empire créé par Samory ?",o:["Empire théocratique","Empire colonial","Démocratie","République"],r:0,e:"Empire théocratique."},
+{c:"3e",s:5,t:"Samory",q:"Tactique utilisée par Samory ?",o:["Terre brûlée","Blitzkrieg","Tranchées","Embuscade"],r:0,e:"Terre brûlée."},
+{c:"3e",s:5,t:"Ménélik",q:"Résistance victorieuse en Afrique ?",o:["Ménélik II en Éthiopie","Béhanzin","Samory","Kaba"],r:0,e:"Ménélik II en Éthiopie."},
+{c:"3e",s:5,t:"Ménélik",q:"Traité à l'origine de l'affrontement italo-éthiopien ?",o:["Uccialli (1889)","Berlin","Rome","Versailles"],r:0,e:"Uccialli (1889)."},
+{c:"3e",s:5,t:"Ménélik",q:"Bataille consacrant la victoire éthiopienne ?",o:["Adoua (1er mars 1896)","Waterloo","Iéna","Sadowa"],r:0,e:"Adoua."},
+{c:"3e",s:5,t:"Béhanzin",q:"Résistant au Danxome ?",o:["Béhanzin","Samory","Bio Guera","Kaba"],r:0,e:"Béhanzin."},
+{c:"3e",s:5,t:"Béhanzin",q:"Fin de Béhanzin ?",o:["Reddition et exil","Victoire","Fuite en Europe","Mort au combat"],r:0,e:"Reddition et exil."},
+{c:"3e",s:5,t:"Saka Yerima",q:"Résistant au Borgu (mort en 1897) ?",o:["Saka Yerima","Béhanzin","Ménélik","Kaba"],r:0,e:"Saka Yerima."},
+{c:"3e",s:5,t:"Saka Yerima",q:"Lieu de sa mort ?",o:["Ariyo (31 décembre 1897)","Adoua","Cotonou","Bembèrèkè"],r:0,e:"Ariyo."},
+{c:"3e",s:5,t:"Holli",q:"Résistance des Holli ?",o:["Dans le Hollidje contre l'administration coloniale","Contre la traite","Contre les Anglais","Au Nord"],r:0,e:"Hollidje."},
+{c:"3e",s:5,t:"Saxwe",q:"Administrateur colonial tué par les Saxwe ?",o:["Grange (21 juillet 1918)","Faurrax","Ferlus","Dodds"],r:0,e:"Grange."},
+{c:"3e",s:5,t:"Bio Guera",q:"Résistant mort le 17 décembre 1916 ?",o:["Bio Guera","Saka Yerima","Kaba","Béhanzin"],r:0,e:"Bio Guera."},
+{c:"3e",s:5,t:"Échecs",q:"Cause interne d'échec des résistances ?",o:["Divisions entre Africains","Manque de combattants","Manque de courage","Aucune cause"],r:0,e:"Divisions."},
+{c:"2nde",s:1,t:"Historicité",q:"Qui a écrit « Longtemps, mythes et préjugés ont caché au monde l'histoire réelle de l'Afrique » ?",o:["Cheikh Anta Diop","Amadou Mahtar M'Bow","Ki-Zerbo","Senghor"],r:1,e:"Amadou Mahtar M'Bow."},
+{c:"2nde",s:1,t:"Africanistes",q:"Quel africaniste européen est cité pour ses études sur l'Afrique ?",o:["Léo Frobenius","Karl Marx","Adam Smith","Isaac Newton"],r:0,e:"Léo Frobenius."},
+{c:"2nde",s:1,t:"Pionniers",q:"Qui sont les pionniers africains de l'historiographie ?",o:["Cheikh Anta Diop et Joseph Ki-Zerbo","Ménélik et Béhanzin","Samory et Saka Yerima","Marx et Lénine"],r:0,e:"Cheikh Anta Diop et Ki-Zerbo."},
+{c:"2nde",s:1,t:"UNESCO",q:"Quelle institution a publié l'« Histoire générale de l'Afrique » ?",o:["UNESCO","ONU","OUA","CEDEAO"],r:0,e:"L'UNESCO."},
+{c:"2nde",s:1,t:"Historicité",q:"Que signifie « refonder l'histoire à partir de la matrice africaine » ?",o:["Repenser l'histoire selon les normes africaines","Ignorer l'histoire","Copier l'Occident","Abandonner l'histoire"],r:0,e:"Repenser l'histoire selon les normes africaines."},
+{c:"2nde",s:1,t:"Heuristique",q:"Comment appelle-t-on la première tâche de l'historien ?",o:["L'heuristique","La critique","L'analyse","La synthèse"],r:0,e:"L'heuristique."},
+{c:"2nde",s:1,t:"Critique",q:"Quels sont les deux aspects de la critique ?",o:["Externe et interne","Haute et basse","Simple et complexe","Courte et longue"],r:0,e:"Externe et interne."},
+{c:"2nde",s:1,t:"Critique externe",q:"Que recherche la critique externe (érudition) ?",o:["Écriture, langue, formes, sources","Intentions de l'auteur","Sincérité","Exactitude"],r:0,e:"Écriture, langue, formes, sources."},
+{c:"2nde",s:1,t:"Critique interne",q:"Que recouvre la critique interne ?",o:["Interprétation et crédibilité","Authenticité et provenance","Écriture et langue","Formes et sources"],r:0,e:"Interprétation et crédibilité."},
+{c:"2nde",s:1,t:"Sources écrites",q:"Quelles sont les sources écrites de l'histoire africaine ?",o:["Européennes, arabes, africaines","Uniquement européennes","Uniquement arabes","Uniquement africaines"],r:0,e:"Européennes, arabes, africaines."},
+{c:"2nde",s:1,t:"Tradition orale",q:"Qui a établi la valeur de la tradition orale en 1961 ?",o:["Jan Vansina","Léo Frobenius","Cheikh Anta Diop","Ki-Zerbo"],r:0,e:"Jan Vansina."},
+{c:"2nde",s:1,t:"Tradition orale",q:"Où a été créé le Centre Régional de Documentation pour la Tradition Orale ?",o:["Niamey (Niger)","Cotonou","Dakar","Abidjan"],r:0,e:"Niamey."},
+{c:"2nde",s:1,t:"Traditionalistes",q:"Comment appelle-t-on les dépositaires de la tradition orale ?",o:["Les traditionalistes (griots, Kpanligan, Diéli)","Les scribes","Les archéologues","Les historiens"],r:0,e:"Traditionalistes."},
+{c:"2nde",s:1,t:"Sources muettes",q:"Quelles sont les « sources muettes » ?",o:["Traces matérielles laissées par les populations","Sources écrites","Témoignages oraux","Poèmes"],r:0,e:"Traces matérielles."},
+{c:"2nde",s:1,t:"Autres sciences",q:"Quelles autres sciences aident à la recherche historique ?",o:["Géologie, anthropologie, linguistique, palynologie","Géographie uniquement","Sociologie uniquement","Économie uniquement"],r:0,e:"Géologie, anthropologie, linguistique, palynologie."},
+{c:"2nde",s:2,t:"Définition",q:"Qu'est-ce que la Géographie ?",o:["Science de l'organisation de l'espace terrestre","Science de l'histoire","Science des nombres","Science du vivant"],r:0,e:"Science de l'organisation de l'espace."},
+{c:"2nde",s:2,t:"Démarche",q:"Pourquoi adopter une méthodologie en Géographie ?",o:["Parce que c'est une science","Parce que c'est obligatoire","Par hasard","Aucune raison"],r:0,e:"La géographie est une science."},
+{c:"2nde",s:2,t:"Méthodes",q:"Quelles sont les trois méthodes de la Géographie ?",o:["Inductive, déductive, hypothétique-déductive","Simple, complexe, mixte","Longue, courte, moyenne","Haute, basse, moyenne"],r:0,e:"Inductive, déductive, hypothétique-déductive."},
+{c:"2nde",s:2,t:"Collecte",q:"Moyens de collecte de l'information en Géographie ?",o:["Recherche documentaire, enquêtes, entretiens, sorties","Lecture uniquement","Télévision","Radio"],r:0,e:"Recherche documentaire, enquêtes, sorties."},
+{c:"2nde",s:2,t:"Traitement",q:"Moyens de traitement de l'information ?",o:["Langage mathématique, graphique, cartographie, informatique","Lecture","Écriture","Discussion"],r:0,e:"Langage mathématique, graphique, cartographie."},
+{c:"2nde",s:2,t:"Dossier",q:"Qu'est-ce qu'un dossier en Géographie ?",o:["Un ensemble organisé de documents sur un sujet","Un cahier d'exercices","Un manuel","Une carte"],r:0,e:"Ensemble organisé de documents."},
+{c:"2nde",s:2,t:"Dossier",q:"Quelle est l'utilité d'un dossier ?",o:["Structurer la recherche et la synthèse","Décorer la classe","Remplacer le cours","Éviter les devoirs"],r:0,e:"Structurer la recherche."},
+{c:"2nde",s:2,t:"Méthode",q:"La démarche qui part du général au particulier est ?",o:["Déductive","Inductive","Expérimentale","Statistique"],r:0,e:"Déductive."},
+{c:"2nde",s:2,t:"Méthode",q:"La démarche qui part du particulier au général est ?",o:["Inductive","Déductive","Hypothétique","Statistique"],r:0,e:"Inductive."},
+{c:"2nde",s:2,t:"Méthode",q:"Quelle méthode formule des hypothèses à vérifier ?",o:["Hypothétique-déductive","Inductive","Déductive","Descriptive"],r:0,e:"Hypothétique-déductive."},
+{c:"2nde",s:2,t:"Recherche",q:"Que permet la recherche documentaire en Géographie ?",o:["Collecter des informations variées","Uniquement lire","Uniquement écrire","Rien"],r:0,e:"Collecter des informations."},
+{c:"2nde",s:2,t:"Enquête",q:"Quel est l'objectif d'une enquête en Géographie ?",o:["Recueillir des données sur le terrain","Décorer la classe","Éviter le travail","Faire du sport"],r:0,e:"Recueillir des données sur le terrain."},
+{c:"2nde",s:2,t:"Cartographie",q:"À quoi sert la cartographie ?",o:["Représenter l'espace et localiser les phénomènes","Dessiner pour le plaisir","Compter","Écrire"],r:0,e:"Représenter l'espace."},
+{c:"2nde",s:2,t:"Statistiques",q:"À quoi servent les données statistiques ?",o:["Quantifier et comparer les phénomènes","Décorer","Illustrer","Aucune utilité"],r:0,e:"Quantifier et comparer."},
+{c:"2nde",s:2,t:"Conclusion",q:"Qu'étudie la Géographie principalement ?",o:["L'organisation de l'espace par les hommes","Uniquement les reliefs","Uniquement les climats","Uniquement les populations"],r:0,e:"L'organisation de l'espace."},
+{c:"2nde",s:3,t:"Cadre",q:"Qui a dit « L'Égypte est un don du Nil » ?",o:["Hérodote","Aristote","Platon","Strabon"],r:0,e:"Hérodote."},
+{c:"2nde",s:3,t:"Géographie",q:"Par quelles parties l'Égypte antique était-elle divisée ?",o:["Haute, moyenne, basse Égypte","Nord et Sud","Est et Ouest","Centrale et périphérique"],r:0,e:"Haute, moyenne, basse Égypte."},
+{c:"2nde",s:3,t:"Nil",q:"Quels avantages le Nil apportait-il à l'Égypte ?",o:["Limon, irrigation, pêche, navigation","Uniquement l'eau","Uniquement le transport","Aucun"],r:0,e:"Limon, irrigation, pêche, navigation."},
+{c:"2nde",s:3,t:"Sciences",q:"Quels progrès techniques les Égyptiens ont-ils réalisés ?",o:["Pyramides, momification, mise en valeur de la vallée","Électricité","Découverte de l'Amérique","Invention de la roue"],r:0,e:"Pyramides, momification."},
+{c:"2nde",s:3,t:"Religion",q:"Quel pharaon a imposé le culte d'Aton ?",o:["Aménophis IV (Akhénaton)","Ramsès II","Chéops","Toutankhamon"],r:0,e:"Akhénaton."},
+{c:"2nde",s:3,t:"Religion",q:"Quel était le dieu soleil égyptien ?",o:["Amon-Rê","Osiris","Horus","Anubis"],r:0,e:"Amon-Rê."},
+{c:"2nde",s:3,t:"Religion",q:"Qui était le dieu des morts et du renouveau ?",o:["Osiris","Horus","Anubis","Thot"],r:0,e:"Osiris."},
+{c:"2nde",s:3,t:"Religion",q:"Qui était le dieu de la sagesse ?",o:["Thot","Anubis","Horus","Osiris"],r:0,e:"Thot."},
+{c:"2nde",s:3,t:"Religion",q:"Quel dieu avait une tête de chacal ?",o:["Anubis","Horus","Thot","Amon"],r:0,e:"Anubis."},
+{c:"2nde",s:3,t:"Rapports",q:"Quel royaume nubien était le principal partenaire de l'Égypte ?",o:["Kouch","Axoum","Monomotapa","Ghana"],r:0,e:"Kouch."},
+{c:"2nde",s:3,t:"Rapports",q:"Quel royaume fournissait à l'Égypte encens, ivoire et plumes d'autruche ?",o:["Axoum","Kouch","Nubie","Pount"],r:0,e:"Axoum."},
+{c:"2nde",s:3,t:"Rapports",q:"Quel port axoumite jouait un rôle important dans le commerce ?",o:["Adoulis","Alexandrie","Karnak","Louxor"],r:0,e:"Adoulis."},
+{c:"2nde",s:3,t:"Africanité",q:"Quels arguments prouvent l'africanité de l'Égypte pharaonique ?",o:["Géographiques et anthropologiques","Uniquement géographiques","Uniquement anthropologiques","Aucun"],r:0,e:"Géographiques et anthropologiques."},
+{c:"2nde",s:3,t:"Africanité",q:"Quel auteur africain a défendu l'africanité de l'Égypte ?",o:["Cheikh Anta Diop","Ki-Zerbo","Senghor","M'Bow"],r:0,e:"Cheikh Anta Diop."},
+{c:"2nde",s:3,t:"Apports",q:"Parmi ces apports, lequel est égyptien ?",o:["Hiéroglyphes, papyrus, pyramides","Chiffres arabes","Boussole","Imprimerie"],r:0,e:"Hiéroglyphes, papyrus, pyramides."},
+{c:"2nde",s:4,t:"Répartition",q:"Comment l'eau est-elle répartie à la surface de la Terre ?",o:["Inégalement","Uniformément","Uniquement dans les déserts","Uniquement aux pôles"],r:0,e:"Inégalement."},
+{c:"2nde",s:4,t:"Répartition",q:"Quelle proportion de la surface terrestre est couverte d'eau ?",o:["Plus de la moitié","Un quart","Un dixième","Trois quarts"],r:0,e:"Plus de la moitié."},
+{c:"2nde",s:4,t:"Usages",q:"Quels sont les principaux usages de l'eau ?",o:["Domestiques, économiques, culturels","Uniquement domestiques","Uniquement industriels","Uniquement agricoles"],r:0,e:"Domestiques, économiques, culturels."},
+{c:"2nde",s:4,t:"Menaces",q:"Quelles sont les menaces liées à l'eau ?",o:["Rareté, gaspillage, conflits, pollution","Abondance","Refroidissement","Aucune"],r:0,e:"Rareté, gaspillage, conflits, pollution."},
+{c:"2nde",s:4,t:"Conflits",q:"Quel exemple de conflit lié à l'eau est cité ?",o:["Israël et la Jordanie pour le Jourdain","France et Allemagne","Chine et Japon","Brésil et Argentine"],r:0,e:"Israël et Jordanie (Jourdain)."},
+{c:"2nde",s:4,t:"Pollution",q:"Quelles sont les causes de la pollution de l'eau ?",o:["Produits chimiques, déchets industriels, hydrocarbures","Uniquement les pluies","Uniquement le vent","Aucune"],r:0,e:"Produits chimiques, déchets industriels."},
+{c:"2nde",s:4,t:"Santé",q:"Quelle maladie est liée à l'eau insalubre ?",o:["Le choléra","Le diabète","L'asthme","La rougeole"],r:0,e:"Le choléra."},
+{c:"2nde",s:4,t:"Solutions",q:"Quelles solutions sont proposées pour préserver l'eau ?",o:["Sensibilisation, aménagements, traitement, préservation","Augmenter la pollution","Ignorer le problème","Fermer les usines"],r:0,e:"Sensibilisation, aménagements, traitement."},
+{c:"2nde",s:4,t:"Gaspillage",q:"Quel comportement gaspille l'eau ?",o:["Utilisation irresponsable en ville","Réutilisation","Économie","Récupération"],r:0,e:"Gaspillage urbain."},
+{c:"2nde",s:4,t:"Démographie",q:"Pourquoi les besoins en eau augmentent-ils ?",o:["À cause de l'explosion démographique","Baisse de population","Froid","Aucune raison"],r:0,e:"Explosion démographique."},
+{c:"2nde",s:4,t:"Enjeux",q:"Pourquoi l'eau est-elle un enjeu de développement ?",o:["Elle est source de vie et moteur économique","Elle est inutile","Elle est abondante partout","Elle n'a aucun rôle"],r:0,e:"Source de vie et moteur économique."},
+{c:"2nde",s:4,t:"Domestique",q:"Quel est le principal usage domestique de l'eau ?",o:["Boisson, cuisine, hygiène","Uniquement la cuisine","Uniquement la boisson","Uniquement l'hygiène"],r:0,e:"Boisson, cuisine, hygiène."},
+{c:"2nde",s:4,t:"Économique",q:"Dans quels secteurs l'eau est-elle utilisée ?",o:["Agriculture, industries, pêche, transport, énergie","Uniquement l'agriculture","Uniquement l'industrie","Uniquement le transport"],r:0,e:"Agriculture, industries, pêche, transport, énergie."},
+{c:"2nde",s:4,t:"Culture",q:"Quel rôle l'eau joue-t-elle dans les croyances ?",o:["Elle est sacrée dans certaines cultures","Aucun rôle","Rôle profane","Rôle uniquement économique"],r:0,e:"Sacrée dans certaines cultures."},
+{c:"2nde",s:4,t:"Conclusion",q:"Quelle est la conclusion de la SA sur l'eau ?",o:["L'eau est indispensable mais menacée, il faut la préserver","L'eau est inutile","L'eau est infinie","L'eau n'est pas menacée"],r:0,e:"Indispensable mais menacée."},
+{c:"1ere",s:1,t:"Entre-deux-guerres",q:"Quelle période historique ouvre les traités de paix signés en 1919-1920 ?",o:["L'entre-deux-guerres","La Belle Époque","La guerre froide","La Renaissance"],r:0,e:"L'entre-deux-guerres."},
+{c:"1ere",s:1,t:"Années 20",q:"Comment caractériser la prospérité des années 20 aux États-Unis ?",o:["Une prosperity fragile","Une prospérité durable","Une crise permanente","Une stagnation"],r:0,e:"Prosperity fragile."},
+{c:"1ere",s:1,t:"Années 20",q:"Quelle démocratie vit une « stabilité fragile » dans les années 20 ?",o:["L'Allemagne de Weimar","La Suisse","Le Royaume-Uni uniquement","La Belgique"],r:0,e:"Allemagne de Weimar."},
+{c:"1ere",s:1,t:"Régimes",q:"Quel régime Mussolini impose-t-il en Italie dans les années 20 ?",o:["Une dictature fasciste","Une démocratie","Une monarchie parlementaire","Un communisme"],r:0,e:"Dictature fasciste."},
+{c:"1ere",s:1,t:"Régimes",q:"Qui impose le communisme en URSS dans les années 20 ?",o:["Lénine","Staline","Trotski","Khrouchtchev"],r:0,e:"Lénine."},
+{c:"1ere",s:1,t:"Crise 1929",q:"En quelle année éclate la grande crise économique mondiale ?",o:["1929","1919","1933","1939"],r:0,e:"1929."},
+{c:"1ere",s:1,t:"Crise 1929",q:"Comment appelle-t-on la période de crise qui suit 1929 ?",o:["La Grande Dépression","La Belle Époque","La Renaissance","L'Âge d'or"],r:0,e:"La Grande Dépression."},
+{c:"1ere",s:1,t:"Crise 1929",q:"Quel événement marque le début de la crise de 1929 ?",o:["Le krach boursier de Wall Street","La Première Guerre mondiale","Le traité de Versailles","La révolution russe"],r:0,e:"Krach de Wall Street."},
+{c:"1ere",s:1,t:"Conséquences",q:"Quel effet la crise de 1929 a-t-elle sur les démocraties libérales ?",o:["Elle les affaiblit","Elle les renforce","Elle les fait disparaître","Aucun effet"],r:0,e:"Elle les affaiblit."},
+{c:"1ere",s:1,t:"Conséquences",q:"Quelle conséquence politique la crise de 1929 entraîne-t-elle ?",o:["La montée des régimes totalitaires","La fin du colonialisme","L'essor du libéralisme","La création de l'ONU"],r:0,e:"Montée des régimes totalitaires."},
+{c:"1ere",s:1,t:"Totalitarismes",q:"Quel parti arrive au pouvoir en Allemagne en 1933 ?",o:["Le parti nazi (NSDAP)","Le parti communiste","Le parti socialiste","Le parti libéral"],r:0,e:"Parti nazi."},
+{c:"1ere",s:1,t:"Totalitarismes",q:"Quelle est la caractéristique commune des régimes totalitaires ?",o:["Le parti unique et la terreur","Le multipartisme","La liberté de la presse","La démocratie directe"],r:0,e:"Parti unique et terreur."},
+{c:"1ere",s:1,t:"Totalitarismes",q:"Quel événement de 1936-1939 préfigure la Seconde Guerre mondiale ?",o:["La guerre d'Espagne","La guerre de Corée","La guerre du Vietnam","La guerre des Six Jours"],r:0,e:"Guerre d'Espagne."},
+{c:"1ere",s:1,t:"Vers la guerre",q:"Quel accord de 1938 symbolise la politique d'apaisement ?",o:["Les accords de Munich","Le traité de Versailles","Le pacte de Varsovie","Les accords d'Oslo"],r:0,e:"Accords de Munich."},
+{c:"1ere",s:1,t:"Vers la guerre",q:"Quel événement marque le début de la Seconde Guerre mondiale ?",o:["L'invasion de la Pologne (1er sept. 1939)","L'attaque de Pearl Harbor","L'invasion de l'URSS","L'annexion de l'Autriche"],r:0,e:"Invasion de la Pologne."},
+{c:"1ere",s:2,t:"CEDEAO",q:"Quel est le premier bénéficiaire du développement des communications ?",o:["Le secteur commercial","L'agriculture","L'industrie","Le tourisme"],r:0,e:"Secteur commercial."},
+{c:"1ere",s:2,t:"Réseaux",q:"Quel réseau est l'un des premiers installés par les colonisateurs ?",o:["Le réseau ferroviaire","Le réseau routier","Le réseau aérien","Le réseau maritime"],r:0,e:"Réseau ferroviaire."},
+{c:"1ere",s:2,t:"Réseaux",q:"Quel axe ferroviaire fonctionne encore dans l'espace CEDEAO ?",o:["Abidjan-Ouagadougou et Dakar-Bamako","Paris-Cotonou","Lagos-Nairobi","Accra-Abuja"],r:0,e:"Abidjan-Ouagadougou, Dakar-Bamako."},
+{c:"1ere",s:2,t:"Transport aérien",q:"Quelle compagnie aérienne africaine a disparu ?",o:["Air Afrique","Air France","Ethiopian Airlines","Kenya Airways"],r:0,e:"Air Afrique."},
+{c:"1ere",s:2,t:"Transport maritime",q:"Quelle est la caractéristique des ports de la CEDEAO ?",o:["Émergence de ports compétitifs","Absence de ports","Faible capacité","Déclin total"],r:0,e:"Ports compétitifs."},
+{c:"1ere",s:2,t:"Réseau fluvial",q:"Quel organisme de développement fluvial existe depuis les années 60 ?",o:["L'Autorité du bassin du fleuve Niger","La CEDEAO","L'UEMOA","L'Union africaine"],r:0,e:"Autorité du bassin du Niger."},
+{c:"1ere",s:2,t:"Télécoms",q:"Quel moyen de communication est le premier à distance dans la CEDEAO ?",o:["La radiodiffusion","Internet","Le téléphone mobile","La télévision"],r:0,e:"Radiodiffusion."},
+{c:"1ere",s:2,t:"Télécoms",q:"Quand la télévision est-elle apparue dans l'espace CEDEAO ?",o:["Fin des années 60","Années 30","Années 2000","Années 2010"],r:0,e:"Fin des années 60."},
+{c:"1ere",s:2,t:"Télécoms",q:"Quand les radios et télévisions privées se sont-elles multipliées ?",o:["Dans les années 90","Années 60","Années 2000","Années 2010"],r:0,e:"Années 90."},
+{c:"1ere",s:2,t:"Internet",q:"Quel constat fait-on sur la qualité d'Internet dans la CEDEAO ?",o:["Elle demeure très passable","Elle est excellente","Elle n'existe pas","Elle est parfaite"],r:0,e:"Très passable."},
+{c:"1ere",s:2,t:"Avantages",q:"Quel est l'avantage du développement des communications pour le commerce ?",o:["Rapidité et sécurité dans les échanges","Réduction des prix","Baisse des importations","Fermeture des frontières"],r:0,e:"Rapidité et sécurité."},
+{c:"1ere",s:2,t:"Avantages",q:"Quel effet le développement des routes a-t-il sur les pays de l'hinterland ?",o:["Leur désenclavement","Leur isolement","Leur appauvrissement","Aucun effet"],r:0,e:"Désenclavement."},
+{c:"1ere",s:2,t:"Insuffisances",q:"Quelle est l'insuffisance du réseau routier dans la CEDEAO ?",o:["Insuffisance des routes et mauvais état","Excès de routes","Absence totale de routes","Routes parfaites"],r:0,e:"Routes insuffisantes et en mauvais état."},
+{c:"1ere",s:2,t:"Insuffisances",q:"Quelle est l'insuffisance du transport aérien ?",o:["Domination par des investisseurs étrangers","Trop de compagnies nationales","Trop d'aéroports","Aucune insuffisance"],r:0,e:"Domination étrangère."},
+{c:"1ere",s:2,t:"Insuffisances",q:"Quelle fracture persiste entre le monde développé et la CEDEAO ?",o:["La fracture numérique","La fracture alimentaire","La fracture culturelle","La fracture religieuse"],r:0,e:"Fracture numérique."},
+{c:"1ere",s:3,t:"WWII",q:"Quel événement déclenche la Seconde Guerre mondiale ?",o:["L'invasion de la Pologne (1er sept. 1939)","L'attaque de Pearl Harbor","L'invasion de la France","La bataille de Stalingrad"],r:0,e:"Invasion de la Pologne."},
+{c:"1ere",s:3,t:"WWII",q:"Quelle stratégie militaire allemande est utilisée au début de la guerre ?",o:["La guerre-éclair (Blitzkrieg)","La guerre de tranchées","La guérilla","La guerre navale"],r:0,e:"Blitzkrieg."},
+{c:"1ere",s:3,t:"WWII",q:"Quel événement marque l'entrée en guerre des États-Unis ?",o:["L'attaque de Pearl Harbor (7 décembre 1941)","L'invasion de la Pologne","La bataille de Stalingrad","Le débarquement de Normandie"],r:0,e:"Pearl Harbor."},
+{c:"1ere",s:3,t:"WWII",q:"Quelle bataille marque le tournant de la guerre en Europe ?",o:["Stalingrad (1942-1943)","Verdun","Waterloo","Iéna"],r:0,e:"Stalingrad."},
+{c:"1ere",s:3,t:"WWII",q:"Quand a lieu le débarquement de Normandie ?",o:["6 juin 1944","1er septembre 1939","8 mai 1945","7 décembre 1941"],r:0,e:"6 juin 1944."},
+{c:"1ere",s:3,t:"WWII",q:"Quelle ville japonaise est frappée par la première bombe atomique ?",o:["Hiroshima (6 août 1945)","Tokyo","Nagasaki","Osaka"],r:0,e:"Hiroshima."},
+{c:"1ere",s:3,t:"WWII",q:"Que crée la conférence de Yalta et Potsdam ?",o:["L'ONU","L'OTAN","L'URSS","Le pacte de Varsovie"],r:0,e:"L'ONU."},
+{c:"1ere",s:3,t:"Guerre froide",q:"Qu'est-ce que la guerre froide ?",o:["Un conflit sans affrontement direct entre les deux blocs","Une guerre ouverte","Une guerre civile","Une guerre commerciale"],r:0,e:"Conflit sans affrontement direct."},
+{c:"1ere",s:3,t:"Guerre froide",q:"Quel plan américain aide à la reconstruction de l'Europe ?",o:["Le plan Marshall","Le plan Barberousse","Le plan Schlieffen","Le plan Molotov"],r:0,e:"Plan Marshall."},
+{c:"1ere",s:3,t:"Guerre froide",q:"Quelle organisation militaire est créée en 1949 par le bloc de l'Ouest ?",o:["L'OTAN","Le pacte de Varsovie","L'ONU","L'UNESCO"],r:0,e:"OTAN (1949)."},
+{c:"1ere",s:3,t:"Guerre froide",q:"Quelle organisation militaire est créée en 1955 par le bloc de l'Est ?",o:["Le pacte de Varsovie","L'OTAN","L'ONU","L'UNESCO"],r:0,e:"Pacte de Varsovie (1955)."},
+{c:"1ere",s:3,t:"Guerre froide",q:"Quel événement de 1962 a failli déclencher une guerre nucléaire ?",o:["La crise des fusées de Cuba","La crise de Suez","Le mur de Berlin","La guerre de Corée"],r:0,e:"Crise des fusées de Cuba."},
+{c:"1ere",s:3,t:"Détente",q:"Quel traité de 1963 interdit les essais nucléaires dans l'atmosphère ?",o:["Le traité de Moscou","Le traité de Versailles","Le traité de Rome","Le traité de Washington"],r:0,e:"Traité de Moscou."},
+{c:"1ere",s:3,t:"Fin guerre froide",q:"Qui arrive au pouvoir en URSS en 1985 et engage la fin de la guerre froide ?",o:["Gorbatchev","Brejnev","Khrouchtchev","Staline"],r:0,e:"Gorbatchev."},
+{c:"1ere",s:3,t:"Fin guerre froide",q:"Quel événement marque la fin symbolique de la guerre froide en 1989 ?",o:["La chute du mur de Berlin","La crise de Cuba","La guerre de Corée","Le pacte de Varsovie"],r:0,e:"Chute du mur de Berlin."},
+{c:"1ere",s:4,t:"Définition",q:"Qu'est-ce que la pauvreté ?",o:["L'état de celui qui manque du minimum de bien-être","Un choix de vie","Une richesse cachée","Un phénomène naturel"],r:0,e:"Manque du minimum de bien-être."},
+{c:"1ere",s:4,t:"Définition",q:"Quel indicateur est utilisé pour mesurer la pauvreté ?",o:["Le PNB, le PIB, l'IDH","La taille de la population","Le climat","La religion"],r:0,e:"PNB, PIB, IDH."},
+{c:"1ere",s:4,t:"Formes",q:"Quelle forme de pauvreté concerne le revenu par tête ?",o:["La pauvreté monétaire","La pauvreté d'existence","La pauvreté subjective","La pauvreté culturelle"],r:0,e:"Pauvreté monétaire."},
+{c:"1ere",s:4,t:"Formes",q:"Quelle forme de pauvreté se fonde sur le niveau de vie et le patrimoine ?",o:["La pauvreté d'existence","La pauvreté monétaire","La pauvreté subjective","La pauvreté politique"],r:0,e:"Pauvreté d'existence."},
+{c:"1ere",s:4,t:"Foyers",q:"Où se situent les principaux foyers de pauvreté dans le monde ?",o:["Dans les pays du tiers monde","En Europe","En Amérique du Nord","En Océanie"],r:0,e:"Pays du tiers monde."},
+{c:"1ere",s:4,t:"Foyers",q:"Quel continent concentre le plus grand nombre de pays pauvres ?",o:["L'Afrique subsaharienne","L'Europe","L'Amérique du Nord","L'Océanie"],r:0,e:"Afrique subsaharienne."},
+{c:"1ere",s:4,t:"Causes",q:"Quelle cause économique explique la pauvreté ?",o:["Les relations Nord-Sud défavorables","Le trop-plein de richesses","L'excès de technologie","La surpopulation"],r:0,e:"Relations Nord-Sud défavorables."},
+{c:"1ere",s:4,t:"Causes",q:"Quelle cause politique explique la pauvreté ?",o:["La mauvaise gouvernance après les indépendances","Le multipartisme","La démocratie","La liberté de la presse"],r:0,e:"Mauvaise gouvernance."},
+{c:"1ere",s:4,t:"Causes",q:"Quelle cause socio-culturelle explique la pauvreté ?",o:["L'extraversion culturelle et l'apathie","La richesse culturelle","L'éducation","La solidarité"],r:0,e:"Extraversion culturelle."},
+{c:"1ere",s:4,t:"Manifestations",q:"Combien de personnes vivent avec moins de 1 dollar par jour ?",o:["Plus d'un milliard","100 millions","500 millions","3 milliards"],r:0,e:"Plus d'un milliard."},
+{c:"1ere",s:4,t:"Manifestations",q:"Combien d'enfants meurent chaque année de malnutrition ?",o:["6 millions","100 000","1 million","20 millions"],r:0,e:"6 millions."},
+{c:"1ere",s:4,t:"Persistance",q:"Quelle raison explique la persistance de la pauvreté ?",o:["Le poids de la dette extérieure","L'excès de production","La baisse de la population","L'abondance des ressources"],r:0,e:"Poids de la dette."},
+{c:"1ere",s:4,t:"Lutte",q:"Quelle mesure structurelle lutte contre la pauvreté ?",o:["Renforcer le capital humain par l'éducation et la santé","Réduire les investissements","Augmenter les armements","Fermer les écoles"],r:0,e:"Renforcer le capital humain."},
+{c:"1ere",s:4,t:"Lutte",q:"Quelle mesure conjoncturelle lutte contre la pauvreté ?",o:["Promouvoir le dialogue Sud-Sud","Augmenter la dette","Réduire les échanges","Fermer les frontières"],r:0,e:"Dialogue Sud-Sud."},
+{c:"1ere",s:4,t:"Lutte",q:"Quel programme international vise à réduire la pauvreté d'ici 2015 ?",o:["Les Objectifs du Millénaire pour le Développement (OMD)","Le plan Marshall","Le NEPAD","L'OTAN"],r:0,e:"Les OMD."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Comment se schématise l'évolution économique du Bénin depuis 1960 ?",o:["En trois périodes : 1960-1972, 1972-1990, 1990 à nos jours","En deux périodes","En une seule période","Aucune période"],r:0,e:"Trois périodes."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quelle période correspond à la crise de la décolonisation au Bénin ?",o:["1960-1972","1972-1990","1990-2000","2000-2010"],r:0,e:"1960-1972."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Que caractérise la période 1972-1990 au Bénin ?",o:["L'instauration d'un régime révolutionnaire socialiste","La monarchie","Le libéralisme pur","L'anarchie"],r:0,e:"Régime révolutionnaire socialiste."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quel événement met fin à l'option socialiste de développement en 1989 ?",o:["Les remous sociaux et politiques","La guerre","Un coup d'État militaire","Une invasion"],r:0,e:"Remous sociaux et politiques."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quelle est la période du renouveau démocratique ?",o:["1990 à nos jours","1960-1972","1972-1990","2000-2010"],r:0,e:"1990 à nos jours."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quel événement a marqué le début du renouveau démocratique ?",o:["La Conférence Nationale de 1990","Le coup d'État de 1972","L'indépendance de 1960","Les élections de 2006"],r:0,e:"Conférence Nationale (1990)."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quel secteur est reconnu comme base de l'économie béninoise ?",o:["L'agriculture","L'industrie","Le tourisme","Les services"],r:0,e:"L'agriculture."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quelle production agricole est la plus subventionnée au Bénin ?",o:["Le coton","Le maïs","L'igname","Le riz"],r:0,e:"Le coton."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quelle est la part du coton dans les recettes d'exportation ?",o:["Environ 40%","Environ 10%","Environ 70%","Environ 5%"],r:0,e:"Environ 40%."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quel secteur est encore embryonnaire au Bénin ?",o:["L'industrie","L'agriculture","Le commerce","Le transport"],r:0,e:"L'industrie."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quelles industries dominent le secteur secondaire béninois ?",o:["Cimenterie, minoterie, textile","Automobile","Aéronautique","Électronique"],r:0,e:"Cimenterie, minoterie, textile."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quelle ville du Bénin est un port à vocation régionale ?",o:["Cotonou","Porto-Novo","Parakou","Abomey"],r:0,e:"Cotonou."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quel est l'objectif de la vision « Bénin 2025 » ?",o:["Faire du Bénin un pays-phare, bien gouverné, à économie prospère","Faire du Bénin un pays agricole uniquement","Isoler le Bénin","Réduire la population"],r:0,e:"Pays-phare, bien gouverné, économie prospère."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quelle est l'une des faiblesses de la gouvernance économique béninoise ?",o:["La corruption","L'excès de transparence","Le trop-plein de capitaux","La surproduction"],r:0,e:"La corruption."},
+{c:"tle",s:1,t:"Économie Bénin",q:"Quel projet de développement phare du Bénin est cité ?",o:["La vision Bénin 2025","Le plan Marshall","Le New Deal","L'Agenda 21"],r:0,e:"Vision Bénin 2025."},
+{c:"tle",s:2,t:"ONU",q:"Quand l'ONU a-t-elle officiellement vu le jour ?",o:["Le 24 octobre 1945","Le 26 juin 1945","Le 1er janvier 1946","Le 10 décembre 1948"],r:0,e:"24 octobre 1945."},
+{c:"tle",s:2,t:"ONU",q:"Quelle organisation l'ONU remplace-t-elle ?",o:["La SDN","L'OTAN","L'OUA","L'UNESCO"],r:0,e:"La SDN."},
+{c:"tle",s:2,t:"ONU",q:"Où se situe le siège de l'ONU ?",o:["New York","Genève","Paris","Bruxelles"],r:0,e:"New York."},
+{c:"tle",s:2,t:"ONU",q:"Quel est le principal organe de délibération de l'ONU ?",o:["L'Assemblée générale","Le Conseil de sécurité","Le Secrétariat","La CIJ"],r:0,e:"Assemblée générale."},
+{c:"tle",s:2,t:"ONU",q:"Combien de membres permanents compte le Conseil de sécurité ?",o:["5","10","15","20"],r:0,e:"5 membres permanents."},
+{c:"tle",s:2,t:"ONU",q:"Quels sont les 5 membres permanents du Conseil de sécurité ?",o:["USA, Russie, Royaume-Uni, France, Chine","USA, Allemagne, France, Japon, Chine","Royaume-Uni, France, Italie, Espagne, Portugal","USA, Russie, Inde, Brésil, Chine"],r:0,e:"USA, Russie, RU, France, Chine."},
+{c:"tle",s:2,t:"ONU",q:"Quel est le rôle du droit de veto ?",o:["Permettre aux grandes puissances de s'opposer à une résolution","Donner plus de voix aux petits pays","Nommer le Secrétaire général","Réformer l'ONU"],r:0,e:"S'opposer à une résolution."},
+{c:"tle",s:2,t:"ONU",q:"Qui est le Secrétaire général de l'ONU en 2007 ?",o:["Ban Ki-moon","Kofi Annan","Boutros Boutros-Ghali","Kurt Waldheim"],r:0,e:"Ban Ki-moon."},
+{c:"tle",s:2,t:"ONU",q:"Quel organe judiciaire de l'ONU siège à La Haye ?",o:["La Cour Internationale de Justice (CIJ)","Le Conseil de sécurité","L'UNESCO","Le PNUD"],r:0,e:"La CIJ."},
+{c:"tle",s:2,t:"ONU",q:"Quel prix les Casques bleus ont-ils reçu en 1988 ?",o:["Le prix Nobel de la paix","Le prix Nobel de littérature","Le prix Goncourt","Le prix Pulitzer"],r:0,e:"Nobel de la paix (1988)."},
+{c:"tle",s:2,t:"ONU",q:"Quel est le principal problème de l'ONU selon le guide ?",o:["La domination des États-Unis","Le manque de pays membres","L'absence de budget","Le manque de personnel"],r:0,e:"Domination des États-Unis."},
+{c:"tle",s:2,t:"ONU",q:"Combien de fois le droit de veto a-t-il été utilisé ?",o:["279 fois","50 fois","500 fois","1000 fois"],r:0,e:"279 fois."},
+{c:"tle",s:2,t:"ONU",q:"Quel pays n'a pas ratifié le protocole de Kyoto ?",o:["Les États-Unis","La France","L'Allemagne","Le Japon"],r:0,e:"Les États-Unis."},
+{c:"tle",s:2,t:"ONU",q:"Quelle est la part des États-Unis dans le budget de l'ONU ?",o:["22%","10%","5%","50%"],r:0,e:"22%."},
+{c:"tle",s:2,t:"ONU",q:"Quel principe remplace en 1992 celui de non-ingérence ?",o:["Le devoir d'ingérence humanitaire","Le droit de veto","L'unanimisme","Le neutralisme"],r:0,e:"Ingérence humanitaire."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quel rang mondial les États-Unis occupent-ils pour le PIB ?",o:["1er rang","2e rang","3e rang","5e rang"],r:0,e:"1er rang."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quelle part du PIB mondial les USA produisent-ils ?",o:["25%","10%","50%","75%"],r:0,e:"25%."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quelle est la capitale économique des États-Unis ?",o:["New York","Washington","Los Angeles","Chicago"],r:0,e:"New York."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quel secteur domine l'économie américaine ?",o:["Le tertiaire (services)","Le primaire","Le secondaire","L'agriculture"],r:0,e:"Le tertiaire."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quel est le principal problème structurel des États-Unis ?",o:["L'endettement élevé","Le chômage nul","L'excès de population","La surproduction"],r:0,e:"Endettement élevé."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quel rang mondial le Japon occupe-t-il pour le PIB ?",o:["3e rang","1er rang","2e rang","5e rang"],r:0,e:"3e rang."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quel est le surnom du Japon ?",o:["Le pays du Soleil levant","Le pays de l'Oncle Sam","Le pays des mille collines","Le pays des lions"],r:0,e:"Pays du Soleil levant."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quels sont les facteurs humains de la puissance nippone ?",o:["Qualité des ressources humaines, main-d'œuvre qualifiée","Population faible","Nature généreuse","Absence de syndicats"],r:0,e:"Qualité des ressources humaines."},
+{c:"tle",s:3,t:"USA-Japon",q:"Qu'est-ce que le MITI ?",o:["Ministère du Commerce International et de l'Industrie","Une multinationale","Un syndicat","Une banque"],r:0,e:"MITI."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quel type d'entreprise caractérise l'économie japonaise ?",o:["Les Keiretsu","Les PME isolées","Les coopératives","Les entreprises d'État"],r:0,e:"Keiretsu."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quel est le principal problème structurel du Japon ?",o:["Le vieillissement de la population","Le chômage massif","L'excès de jeunesse","L'analphabétisme"],r:0,e:"Vieillissement de la population."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quelle est la première puissance touristique du monde ?",o:["L'Union européenne","Les USA","Le Japon","La Chine"],r:0,e:"Union européenne."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quelle est la part des USA dans les émissions mondiales de GES ?",o:["25%","5%","50%","10%"],r:0,e:"25%."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quelle est la stratégie des entreprises japonaises dans les années 70-80 ?",o:["Délocalisation","Fermeture","Nationalisation","Retour au protectionnisme"],r:0,e:"Délocalisation."},
+{c:"tle",s:3,t:"USA-Japon",q:"Quelle est la part du Japon dans les robots industriels mondiaux ?",o:["57%","10%","30%","80%"],r:0,e:"57%."},
+{c:"tle",s:4,t:"Indépendances",q:"Quelle guerre a été le catalyseur de l'émancipation des peuples colonisés ?",o:["La Seconde Guerre mondiale","La Première Guerre mondiale","La guerre froide","La guerre du Vietnam"],r:0,e:"Seconde Guerre mondiale."},
+{c:"tle",s:4,t:"Indépendances",q:"Quelle est la période principale de la décolonisation ?",o:["1945-1975","1918-1939","1975-1990","1990-2000"],r:0,e:"1945-1975."},
+{c:"tle",s:4,t:"Indépendances",q:"Quelles sont les deux formes de décolonisation ?",o:["Par la lutte armée et par la négociation","Par la guerre et par la paix","Par le nord et par le sud","Par l'est et par l'ouest"],r:0,e:"Lutte armée ou négociation."},
+{c:"tle",s:4,t:"Indépendances",q:"Quelle colonie britannique est la première à accéder à l'indépendance ?",o:["La Gold Coast (Ghana)","Le Nigéria","Le Kenya","La Rhodésie"],r:0,e:"Gold Coast (Ghana)."},
+{c:"tle",s:4,t:"Indépendances",q:"Qui a négocié l'indépendance du Ghana ?",o:["Kwame Nkrumah","Jomo Kenyatta","Robert Mugabe","Nelson Mandela"],r:0,e:"Kwame Nkrumah."},
+{c:"tle",s:4,t:"Indépendances",q:"Quelle révolte a été réprimée au Kenya en 1952 ?",o:["La révolte des Mau-Mau","La révolte des Zoulous","La révolte des Ashanti","La révolte des Boers"],r:0,e:"Mau-Mau."},
+{c:"tle",s:4,t:"Indépendances",q:"Quel régime s'instaure en Rhodésie du Sud en 1965 ?",o:["L'apartheid","La démocratie","Le communisme","L'anarchie"],r:0,e:"L'apartheid."},
+{c:"tle",s:4,t:"Indépendances",q:"Qui a mené la guérilla contre le régime d'apartheid en Rhodésie ?",o:["Robert Mugabe","Nelson Mandela","Kwame Nkrumah","Jomo Kenyatta"],r:0,e:"Robert Mugabe."},
+{c:"tle",s:4,t:"Indépendances",q:"Quelle puissance coloniale possédait le Congo belge, le Rwanda et le Burundi ?",o:["La Belgique","La France","Le Portugal","Le Royaume-Uni"],r:0,e:"La Belgique."},
+{c:"tle",s:4,t:"Indépendances",q:"Quel pays a refusé toute évolution des colonies jusqu'en 1974 ?",o:["Le Portugal","La France","La Belgique","Le Royaume-Uni"],r:0,e:"Le Portugal."},
+{c:"tle",s:4,t:"Indépendances",q:"Quel événement met fin à la dictature portugaise en 1974 ?",o:["La révolution des œillets","La guerre civile","Un coup d'État militaire","Une invasion"],r:0,e:"Révolution des œillets."},
+{c:"tle",s:4,t:"Indépendances",q:"Qui a dirigé la lutte nationaliste en Guinée-Bissau et au Cap-Vert ?",o:["Amilcar Cabral","Kwame Nkrumah","Agostinho Neto","Samora Machel"],r:0,e:"Amilcar Cabral."},
+{c:"tle",s:4,t:"Indépendances",q:"Quand le Dahomey (actuel Bénin) a-t-il accédé à l'indépendance ?",o:["1960","1957","1958","1965"],r:0,e:"1er août 1960."},
+{c:"tle",s:4,t:"Indépendances",q:"Quel pays a mené une guerre d'indépendance de 1954 à 1962 ?",o:["L'Algérie","Le Maroc","La Tunisie","Le Sénégal"],r:0,e:"L'Algérie."},
+{c:"tle",s:4,t:"Indépendances",q:"Quel constat dresse le guide sur les indépendances africaines ?",o:["Émancipation politique mais dépendance économique","Indépendance totale","Prospérité immédiate","Retour au colonialisme"],r:0,e:"Émancipation politique, dépendance économique."},
+{c:"tle",s:5,t:"Pays émergents",q:"Qu'est-ce qu'un pays émergent ?",o:["Un pays en développement qui connaît une croissance rapide","Un pays pauvre","Un pays riche","Un pays en guerre"],r:0,e:"Pays en développement à croissance rapide."},
+{c:"tle",s:5,t:"Pays émergents",q:"Que signifie BRICS ?",o:["Brésil, Russie, Inde, Chine, South Africa","Brésil, Roumanie, Inde, Chine, Soudan","Brésil, Russie, Iran, Canada, Suède","Brésil, Russie, Inde, Colombie, Syrie"],r:0,e:"Brésil, Russie, Inde, Chine, South Africa."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quel pays est cité comme modèle de succès économique en Asie ?",o:["La Chine","Le Japon","La Corée du Nord","Le Vietnam"],r:0,e:"La Chine."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quel pays est cité comme modèle en Amérique latine ?",o:["Le Brésil","L'Argentine","Le Mexique","Le Chili"],r:0,e:"Le Brésil."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quand la Chine a-t-elle entamé sa modernisation ?",o:["À partir de 1976","En 1949","En 2000","En 1960"],r:0,e:"À partir de 1976."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quel est le point de départ de la modernisation chinoise ?",o:["L'ouverture économique","La fermeture des frontières","L'isolement","La guerre"],r:0,e:"Ouverture économique."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quelles sont les limites du succès économique chinois ?",o:["Inégalités sociales et régionales","Absence de croissance","Manque de main-d'œuvre","Aucune limite"],r:0,e:"Inégalités sociales et régionales."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quel est le « miracle brésilien » ?",o:["Une croissance économique rapide dans les années 70","Une crise économique","Une guerre","Une famine"],r:0,e:"Croissance rapide dans les années 70."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quelle est la principale réussite du Brésil ?",o:["L'agriculture et l'industrie","La pauvreté","Le chômage","Les inégalités"],r:0,e:"Agriculture et industrie."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quel est l'envers du miracle brésilien ?",o:["Violentes inégalités sociales et régionales","Absence de croissance","Manque de terres","Aucun problème"],r:0,e:"Inégalités sociales et régionales."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quel est le principal défi de l'émergence économique du Bénin ?",o:["La diversification de la production","L'isolement","La réduction de la population","Le retour au socialisme"],r:0,e:"Diversification de la production."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quelle est la principale leçon à tirer des modèles chinois et brésilien ?",o:["Il n'existe pas de recette miraculeuse pour le développement","Il faut copier un modèle","Le développement est impossible","L'isolement est la solution"],r:0,e:"Pas de recette miraculeuse."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quel secteur est la base de l'économie chinoise ?",o:["L'industrie manufacturière","L'agriculture uniquement","Le tourisme","Les services uniquement"],r:0,e:"Industrie manufacturière."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quel problème social menace l'émergence brésilienne ?",o:["Les inégalités sociales","L'absence de croissance","Le manque de terres","La surpopulation"],r:0,e:"Inégalités sociales."},
+{c:"tle",s:5,t:"Pays émergents",q:"Quel est l'objectif final du développement des pays émergents ?",o:["Rejoindre les pays développés","Rester au stade actuel","Régresser","S'isoler"],r:0,e:"Rejoindre les pays développés."},
+{c:"tle",s:6,t:"Regroupements",q:"Qu'est-ce que la mondialisation selon le FMI ?",o:["L'interdépendance économique croissante des pays du monde","L'isolement des pays","La fermeture des frontières","Le protectionnisme"],r:0,e:"Interdépendance économique croissante."},
+{c:"tle",s:6,t:"Regroupements",q:"Quel facteur a favorisé la mondialisation ?",o:["Les progrès dans les transports et les communications","Le recul des technologies","La fermeture des frontières","L'isolement"],r:0,e:"Progrès transports et communications."},
+{c:"tle",s:6,t:"Regroupements",q:"Qu'est-ce que la CEDEAO ?",o:["Communauté économique des États de l'Afrique de l'Ouest","Communauté européenne","Union africaine","Ligue arabe"],r:0,e:"CEDEAO."},
+{c:"tle",s:6,t:"Regroupements",q:"Quand la CEDEAO a-t-elle été créée ?",o:["1975","1960","1990","2000"],r:0,e:"1975 (Traité de Lagos)."},
+{c:"tle",s:6,t:"Regroupements",q:"Quel est le siège de la CEDEAO ?",o:["Abuja (Nigeria)","Cotonou","Dakar","Accra"],r:0,e:"Abuja (Nigeria)."},
+{c:"tle",s:6,t:"Regroupements",q:"Quel est l'objectif principal de la CEDEAO ?",o:["L'intégration économique et la libre circulation","La domination militaire","La colonisation","La fermeture"],r:0,e:"Intégration économique."},
+{c:"tle",s:6,t:"Regroupements",q:"Qu'est-ce que l'UE ?",o:["L'Union européenne","L'Union eurasienne","L'Union égyptienne","L'Union équatorienne"],r:0,e:"Union européenne."},
+{c:"tle",s:6,t:"Regroupements",q:"Quel est le siège de la Commission européenne ?",o:["Bruxelles","Luxembourg","Strasbourg","Genève"],r:0,e:"Bruxelles."},
+{c:"tle",s:6,t:"Regroupements",q:"Quel est le principal problème de l'UE ?",o:["25 États différents ne font pas une puissance globale","Le manque de pays","L'excès de population","Le manque de budget"],r:0,e:"25 États différents."},
+{c:"tle",s:6,t:"Regroupements",q:"Qu'est-ce que l'ALENA ?",o:["Accord de libre-échange nord-américain","Alliance latino-américaine","Association des nations andines","Accord de libre-échange asiatique"],r:0,e:"ALENA (USA, Canada, Mexique)."},
+{c:"tle",s:6,t:"Regroupements",q:"Quand l'euro est-il entré en circulation pour les particuliers ?",o:["2002","1999","2000","2005"],r:0,e:"2002."},
+{c:"tle",s:6,t:"Regroupements",q:"Quelle est la première puissance commerciale du monde ?",o:["L'Union européenne","Les USA","Le Japon","La Chine"],r:0,e:"Union européenne."},
+{c:"tle",s:6,t:"Regroupements",q:"Quel est le principal défi des pays pauvres face à la mondialisation ?",o:["Fournir des efforts économiques et technologiques","S'isoler","Fermer les frontières","Réduire la population"],r:0,e:"Efforts économiques et technologiques."},
+{c:"tle",s:6,t:"Regroupements",q:"Quelle est la part de la CEDEAO dans le commerce mondial ?",o:["Faible","Élevée","Moyenne","Très élevée"],r:0,e:"Faible."},
+{c:"tle",s:6,t:"Regroupements",q:"Quel est l'objectif de la CEDEAO à long terme ?",o:["Une monnaie unique (Eco)","Un empire","Une armée commune","Une langue unique"],r:0,e:"Monnaie unique : l'Eco."}
+];
+let state={screen:'home',cycle:null,classe:null,sa:null,questions:[],index:0,answers:[],score:0,glossFilter:'',isExam:false,startTime:0,timerId:null};
+function getBestScore(c,s){try{return parseInt(localStorage.getItem('qcm_'+c+'_'+s))||0}catch(e){return 0}}
+function setBestScore(c,s,sc){try{const cur=getBestScore(c,s);if(sc>cur)localStorage.setItem('qcm_'+c+'_'+s,sc)}catch(e){}}
+function totalBestForClasse(c){const st=SA_TITLES[c];if(!st)return 0;let sum=0;for(const s in st)sum+=getBestScore(c,s);return sum}
+function melanger(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function noteSur20(b,t){if(t===0)return 0;return Math.round((b/t)*20*10)/10}
+function messageResultat(n){if(n>=16)return "Excellent ! Tu maîtrises très bien ce thème. 🎉";if(n>=12)return "Bien joué ! Relis les explications des questions ratées. 👍";if(n>=8)return "C'est un début. Refais la série pour t'améliorer. 💪";return "Ne te décourage pas. Reprends le cours ! 📚"}
+function toFull(q){return{classe:q.c,sa:q.s,theme:q.t,q:q.q,opts:q.o,correct:q.r,exp:q.e}}
+function render(){
+const app=document.getElementById('app');
+if(state.screen==='home')app.innerHTML=renderHome();
+else if(state.screen==='cycle')app.innerHTML=renderCycle();
+else if(state.screen==='classe')app.innerHTML=renderClasse();
+else if(state.screen==='glossaire'){app.innerHTML=renderGlossaire();renderGlossaireContent()}
+else if(state.screen==='fiches')app.innerHTML=renderFiches();
+else if(state.screen==='quiz')app.innerHTML=renderQuiz();
+else if(state.screen==='result')app.innerHTML=renderResult();
+window.scrollTo(0,0);
+}
+function renderHome(){
+const tQ=Q.length;const tD=Object.values(CLASSES).filter(c=>c.dispo).length;
+return `<header><h1>QCM Histoire-Géographie</h1><p>Système éducatif béninois — Collège & Lycée</p></header>
+<div class="intro">Bienvenue ! Choisis ton <strong>cycle d'études</strong>, puis ta classe.</div>
+<div class="section-title">Choisir un cycle</div>
+<div class="cycle-card cycle-college" onclick="ouvrirCycle('college')"><div class="cycle-icon">📚</div><div class="cycle-body"><div class="cycle-title">${CYCLES.college.titre}</div><div class="cycle-sub">${CYCLES.college.sousTitre}</div></div><div class="cycle-arrow">›</div></div>
+<div class="cycle-card cycle-lycee" onclick="ouvrirCycle('lycee')"><div class="cycle-icon">🎓</div><div class="cycle-body"><div class="cycle-title">${CYCLES.lycee.titre}</div><div class="cycle-sub">${CYCLES.lycee.sousTitre}</div></div><div class="cycle-arrow">›</div></div>
+<div class="author-card">
+<div class="author-title">À propos de l'application</div>
+<div class="author-name">Francis EGOUNLETI</div>
+<div class="author-role">Enseignant de Mathématiques</div>
+<a class="author-line" href="tel:0197890952"><span class="author-icon">📞</span> 01 97 89 09 52</a>
+<a class="author-line" href="https://tiktok.com/@mathsclubb" target="_blank"><span class="author-icon">🎵</span> tiktok.com/@mathsclubb</a>
+</div>
+<footer>Programme officiel du Bénin<br>${tQ} questions • ${tD} classes disponibles</footer>`;
+}
+function renderCycle(){
+const cy=CYCLES[state.cycle];let h='';
+cy.classes.forEach(code=>{
+const c=CLASSES[code];const saT=SA_TITLES[code];const nb=Q.filter(q=>q.c===code).length;const dispo=c.dispo&&saT;
+const cls='card'+(state.cycle==='lycee'?' lycee':'')+(!dispo?' bientot':'');const act=dispo?`onclick="ouvrirClasse('${code}')"`:'';
+let meta,sl='';if(dispo){const nSA=Object.keys(saT).length;meta=`${nSA} séries • ${nb} questions`;const b=totalBestForClasse(code);if(b>0)sl=`<div class="card-score">Total meilleurs : ${b}</div>`}else{meta='Contenu à venir'}
+h+=`<div class="${cls}" ${act}><div class="badge">${c.label}</div><div class="card-body"><div class="card-title">${c.titre}</div><div class="card-meta">${meta}</div>${sl}</div></div>`});
+return `<header class="with-back"><button class="back-btn" onclick="retourAccueil()">←</button><div><h1>${cy.titre}</h1><p>${cy.sousTitre}</p></div></header><div class="section-title">Choisir une classe</div>${h}`;
+}
+function renderClasse(){
+const cl=CLASSES[state.classe];const saT=SA_TITLES[state.classe];let h='';
+Object.keys(saT).forEach(sn=>{const sa=saT[sn];const nb=Q.filter(q=>q.c===state.classe&&q.s===parseInt(sn)).length;const b=getBestScore(state.classe,sn);const bt=b>0?`Meilleur : ${b}/${nb}`:'Pas encore essayé';
+const cls=sa.disc==='Géographie'?'card lycee':'card';
+h+=`<div class="${cls}" onclick="demarrer(${sn})"><div class="badge">${sn}</div><div class="card-body"><div class="card-title">${sa.title}</div><div class="card-meta">${sa.disc} • ${nb} questions</div><div class="card-score">${bt}</div></div></div>`});
+const hasGlossary=(GLOSSARY[state.classe]||[]).length>0;
+const glossBtn=hasGlossary?`<div class="glossary-btn" onclick="ouvrirGlossaire('${state.classe}')">📖 Consulter le glossaire (${GLOSSARY[state.classe].length} termes)</div>`:'';
+const examBtn=`<div class="exam-btn" onclick="demarrerExamen(20)">🎯 Mode Examen (20 questions mélangées)</div>`;
+const fichesBtn=`<div class="fiches-btn" onclick="ouvrirFiches('${state.classe}')">📝 Fiches de révision</div>`;
+return `<header class="with-back"><button class="back-btn" onclick="retourCycle()">←</button><div><h1>${cl.titre}</h1><p>${CYCLES[cl.cycle].titre} — Situations d'apprentissage</p></div></header>${examBtn}${fichesBtn}${glossBtn}<div class="section-title">Situations d'apprentissage</div>${h}`;
+}
+function renderGlossaire(){
+const cl=CLASSES[state.classe];const list=GLOSSARY[state.classe]||[];
+return `<header class="with-back"><button class="back-btn" onclick="retourClasse()">←</button><div><h1>Glossaire — ${cl.titre}</h1><p>${list.length} termes du programme</p></div></header>
+<input type="text" class="search-box" placeholder="🔍 Rechercher un terme..." oninput="filtrerGlossaire(this.value)" value="${state.glossFilter||''}">
+<div class="term-count" id="gloss-count"></div>
+<div id="gloss-list"></div>`;
+}
+function filtrerGlossaire(v){state.glossFilter=v.toLowerCase();renderGlossaireContent()}
+function renderGlossaireContent(){
+const list=GLOSSARY[state.classe]||[];const f=state.glossFilter||'';
+const filtered=f?list.filter(x=>x.t.toLowerCase().includes(f)||x.d.toLowerCase().includes(f)):list;
+const el=document.getElementById('gloss-list');if(!el)return;
+let h='';
+if(filtered.length===0){h='<div class="empty-state"><div class="big-icon">🔍</div><h2>Aucun résultat</h2><p>Essayez un autre terme.</p></div>'}
+else{filtered.forEach(x=>{h+=`<div class="term-item"><div class="term-name">${x.t}</div><div class="term-def">${x.d}</div></div>`})}
+el.innerHTML=h;
+const cnt=document.getElementById('gloss-count');if(cnt)cnt.textContent=`${filtered.length} terme${filtered.length>1?'s':''} affiché${filtered.length>1?'s':''}`;
+}
+function renderFiches(){
+const cl=CLASSES[state.classe];const rev=REVISIONS[state.classe]||{};let h='';
+Object.keys(rev).forEach(num=>{const r=rev[num];let pts='';r.pts.forEach(p=>{pts+=`<div class="term-def" style="margin:6px 0 6px 15px">• ${p}</div>`});
+h+=`<div class="term-item"><div class="term-name">SA n°${num} — ${r.t}</div>${pts}</div>`});
+return `<header class="with-back"><button class="back-btn" onclick="retourClasse()">←</button><div><h1>Fiches de révision — ${cl.titre}</h1><p>Résumé par Situation d'Apprentissage</p></div></header><div class="term-count">${Object.keys(rev).length} fiches disponibles</div>${h}`;
+}
+function ouvrirFiches(c){state.screen='fiches';state.classe=c;render()}
+function ouvrirGlossaire(c){state.screen='glossaire';state.classe=c;state.glossFilter='';render()}
+function renderQuiz(){
+const q=state.questions[state.index];const t=state.questions.length;const p=(state.index/t)*100;
+const ans=state.answers.length>state.index;const cur=ans?state.answers[state.index]:null;
+const L=['A','B','C','D'];let oh='';
+q.opts.forEach((o,i)=>{
+let c='option';
+if(state.isExam){
+if(ans&&cur.chosen===i)c+=' selected';
+}else if(ans){c+=' disabled';if(i===q.correct)c+=' correct';else if(i===cur.chosen)c+=' wrong';}
+const a=(state.isExam)?`onclick="choisirOption(${i})"`:(ans?'':`onclick="repondre(${i})"`);
+oh+=`<div class="${c}" ${a}><div class="letter">${L[i]}</div><div>${o}</div></div>`;});
+let eh='',nb='';
+if(state.isExam){
+nb=ans?`<button class="btn btn-primary" onclick="suivante()">${state.index===t-1?'Terminer l\'examen':'Question suivante →'}</button>`:`<button class="btn btn-secondary" disabled>Sélectionne une réponse</button>`;
+}else if(ans){
+eh=`<div class="explanation"><strong>Explication</strong>${q.exp}</div>`;
+nb=`<button class="btn btn-primary" onclick="suivante()">${state.index===t-1?'Voir mon résultat':'Question suivante →'}</button>`;}
+const headerTitle=state.isExam?'🎯 Mode Examen':`${CLASSES[state.classe].titre} — Série ${state.sa}`;
+const headerSub=state.isExam?`Question ${state.index+1} sur ${t}`:SA_TITLES[state.classe][state.sa].title;
+const timerHtml=state.isExam?`<span class="timer" id="timer-display">⏱ 0:00</span>`:'';
+const themeHtml=state.isExam?`<span>Question ${state.index+1} / ${t}</span>${timerHtml}`:`<span>Question ${state.index+1} / ${t}</span><span>${state.score} bonne${state.score>1?'s':''}</span>`;
+return `<header class="with-back"><button class="back-btn" onclick="quitterQuiz()">←</button><div><h1>${headerTitle}</h1><p>${headerSub}</p></div></header>
+<div class="quiz-header">${themeHtml}</div>
+<div class="progress"><div class="progress-fill" style="width:${p}%"></div></div>
+<div class="question"><div class="theme-tag">${q.theme}</div>${q.q}</div>${oh}${eh}${nb}`;
+}
+function choisirOption(c){
+if(state.answers.length>state.index){state.answers[state.index]={chosen:c,correct:c===state.questions[state.index].correct};render();return;}
+state.answers.push({chosen:c,correct:c===state.questions[state.index].correct});render();
+}
+function renderResult(){
+if(state.isExam){return renderExamResult();}
+const t=state.questions.length;const b=state.score;const n=noteSur20(b,t);let sc='';if(n<8)sc='fail';else if(n<12)sc='mid';
+let rh='';const err=state.answers.map((a,i)=>({...a,q:state.questions[i],index:i})).filter(a=>!a.correct);
+if(err.length>0){rh=`<div class="section-title">À revoir (${err.length})</div>`;err.forEach(e=>{rh+=`<div class="review-item"><div class="review-q">${e.q.q}</div><div class="review-a"><strong>Bonne réponse :</strong> ${e.q.opts[e.q.correct]}</div></div>`})}
+return `<header class="with-back"><button class="back-btn" onclick="retourClasse()">←</button><div><h1>Résultat</h1><p>${CLASSES[state.classe].titre} — Série ${state.sa}</p></div></header>
+<div class="result-card"><div class="result-score ${sc}">${n}<span style="font-size:24px;color:#888;">/20</span></div><div class="result-label">Ta note</div><div class="result-detail">${b} bonne${b>1?'s':''} réponse${b>1?'s':''} sur ${t}</div><div class="result-message">${messageResultat(n)}</div></div>
+${rh}<button class="btn btn-primary" onclick="demarrer(${state.sa})">↻ Refaire cette série</button><button class="btn btn-secondary" onclick="retourClasse()">← Retour aux séries</button>`;
+}
+function renderExamResult(){
+const t=state.questions.length;
+const bonnes=state.answers.filter(a=>a.correct).length;
+const n=noteSur20(bonnes,t);let sc='';if(n<8)sc='fail';else if(n<12)sc='mid';
+const elapsed=Math.floor((Date.now()-state.startTime)/1000);
+const duree=`${Math.floor(elapsed/60)} min ${elapsed%60} s`;
+let rh='<div class="section-title">Correction détaillée</div>';
+state.answers.forEach((a,i)=>{const q=state.questions[i];const correctTxt=q.opts[q.correct];
+const chosenTxt=a.chosen!=null?q.opts[a.chosen]:'Aucune réponse';
+rh+=`<div class="review-item" style="${a.correct?'border-left-color:#008751':''}">
+<div class="review-q">${i+1}. ${q.q}</div>
+<div class="review-a" style="color:#E8112D"><strong style="color:#888;">Ta réponse :</strong> ${chosenTxt}</div>
+<div class="review-a"><strong>Bonne réponse :</strong> ${correctTxt}</div>
+</div>`;});
+return `<header class="with-back"><button class="back-btn" onclick="retourClasse()">←</button><div><h1>🎯 Résultat Examen</h1><p>${CLASSES[state.classe].titre} — ${t} questions</p></div></header>
+<div class="result-card"><div class="result-score ${sc}">${n}<span style="font-size:24px;color:#888;">/20</span></div><div class="result-label">Ta note</div><div class="result-detail">${bonnes} bonne${bonnes>1?'s':''} réponse${bonnes>1?'s':''} sur ${t}</div><div class="result-detail">⏱ Durée : ${duree}</div><div class="result-message">${messageResultat(n)}</div></div>
+${rh}<button class="btn btn-primary" onclick="retourClasse()">← Retour à la classe</button>`;
+}
+function demarrerExamen(nb){
+let pool = Q.filter(q=>q.c===state.classe).map(toFull);
+pool = melanger(pool).slice(0, Math.min(nb, pool.length));
+pool = pool.map(q=>{const ix=q.opts.map((o,i)=>({o,c:i===q.correct}));const sh=melanger(ix);return{...q,opts:sh.map(x=>x.o),correct:sh.findIndex(x=>x.c)}});
+state.screen='quiz';state.isExam=true;state.sa=null;
+state.questions=pool;state.index=0;state.answers=[];state.score=0;
+state.startTime=Date.now();
+if(state.timerId)clearInterval(state.timerId);
+state.timerId=setInterval(()=>{
+const el=document.getElementById('timer-display');
+if(el){const s=Math.floor((Date.now()-state.startTime)/1000);el.textContent=`⏱ ${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`}
+},1000);
+render();
+}
+function terminerExamen(){
+if(state.timerId)clearInterval(state.timerId);
+state.timerId=null;
+state.screen='result';render();
+}
+function ouvrirCycle(c){state.screen='cycle';state.cycle=c;render()}
+function ouvrirClasse(c){state.screen='classe';state.classe=c;render()}
+function retourAccueil(){state.screen='home';state.cycle=null;state.classe=null;render()}
+function retourCycle(){state.screen='cycle';state.classe=null;render()}
+function retourClasse(){state.screen='classe';render()}
+function quitterQuiz(){
+const msg=state.isExam?"Quitter l'examen ? Ta progression sera perdue.":"Quitter cette série ? Ta progression ne sera pas enregistrée.";
+if(confirm(msg)){
+if(state.timerId){clearInterval(state.timerId);state.timerId=null}
+state.isExam=false;
+state.screen='classe';render();
+}}
+function demarrer(sa){
+if(state.timerId){clearInterval(state.timerId);state.timerId=null}
+let pool=Q.filter(q=>q.c===state.classe&&q.s===sa).map(toFull);
+pool=melanger(pool).map(q=>{const ix=q.opts.map((o,i)=>({o,c:i===q.correct}));const sh=melanger(ix);return{...q,opts:sh.map(x=>x.o),correct:sh.findIndex(x=>x.c)}});
+state.screen='quiz';state.sa=sa;state.isExam=false;state.questions=pool;state.index=0;state.answers=[];state.score=0;render();
+}
+function repondre(c){if(state.answers.length>state.index)return;const q=state.questions[state.index];const cor=c===q.correct;state.answers.push({chosen:c,correct:cor});if(cor)state.score++;render()}
+function suivante(){
+if(state.isExam){
+if(state.index<state.questions.length-1){state.index++;render()}
+else{terminerExamen()}
+}else{
+if(state.index<state.questions.length-1){state.index++;render()}
+else{setBestScore(state.classe,state.sa,state.score);state.screen='result';render()}
+}}
+render();
+</script>
+</body>
+</html>
